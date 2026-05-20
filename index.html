@@ -39,18 +39,25 @@
                 <p class="text-gray-400">Unimos metodologia e estratégia para alta performance.</p>
             </div>
             <div class="grid grid-cols-1 gap-6">
-                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Murilo Castanheiro</h3></div>
-                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Joao Coutinho</h3></div>
+                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Murilo Castanheiro</h3><p class="text-gray-500 text-sm">Estratégia e Hipertrofia</p></div>
+                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Joao Coutinho</h3><p class="text-gray-500 text-sm">Longevidade e Performance</p></div>
             </div>
         </div>
     </section>
 
     <section class="py-20 bg-neutral-900 text-center">
+        <img src="https://images.icon-icons.com/2642/PNG/512/google_logo_g_logo_icon_159348.png" alt="Logo Google" class="mx-auto w-12 mb-4">
         <h2 class="text-3xl font-bold mb-6">Somos uma consultoria 5 estrelas no <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" class="text-gold underline">Google</a></h2>
         <div class="flex justify-center gap-1 mb-8 text-2xl">
             <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
         </div>
-        <div id="depoimento" class="max-w-2xl mx-auto p-8 card-premium italic text-lg transition-all duration-500">"Carregando..."</div>
+        <div id="depoimento-box" class="max-w-xl mx-auto p-8 card-premium italic text-lg transition-all duration-500">
+            <p id="depoimento-texto" class="mb-4">"Carregando..."</p>
+            <div class="flex items-center justify-center gap-3">
+                <div id="depoimento-foto" class="w-10 h-10 rounded-full bg-neutral-700"></div>
+                <span id="depoimento-nome" class="font-bold text-sm uppercase gold-text">Nome</span>
+            </div>
+        </div>
     </section>
 
     <section id="planos" class="py-24 max-w-7xl mx-auto px-6">
@@ -60,21 +67,46 @@
                 <h3 class="text-2xl font-bold mb-4">Shape em Forma</h3>
                 <div class="text-gold text-sm uppercase mb-4">Mensal</div>
                 <div class="text-4xl font-black mb-6">R$ 297</div>
-                <ul class="text-sm text-gray-400 space-y-2"><li>✓ Acompanhamento inicial</li><li>✓ Treino básico</li></ul>
+                <ul class="text-sm text-gray-400 space-y-2 mb-6">
+                    <li>✓ 30 dias de acompanhamento.</li>
+                    <li>✓ Anamnese completa (on-line).</li>
+                    <li>✓ Avaliação física inicial.</li>
+                    <li>✓ Treino individualizado.</li>
+                    <li>✓ Orientações técnicas.</li>
+                    <li>✓ 1 ajuste estratégico.</li>
+                </ul>
+                <a href="#comunidade" class="btn-custom btn-red w-full">Selecionar</a>
             </div>
             <div class="card-premium p-8 reveal">
                 <h3 class="text-2xl font-bold mb-4">Shape Max</h3>
                 <div class="text-gold text-sm uppercase mb-4">Trimestral</div>
                 <div class="text-4xl font-black mb-1">R$ 697</div>
                 <div class="text-gray-500 mb-6">3x R$ 255,57</div>
-                <ul class="text-sm text-gray-400 space-y-2"><li>✓ 3 meses de acompanhamento</li><li>✓ Consulta Nutricional</li></ul>
+                <ul class="text-sm text-gray-400 space-y-2 mb-6">
+                    <li>✓ 3 meses de acompanhamento.</li>
+                    <li>✓ Planejamento estruturado.</li>
+                    <li>✓ Ajustes mensais estratégicos.</li>
+                    <li>✓ Adaptação neuromuscular.</li>
+                    <li>✓ Evolução segura.</li>
+                    <li>✓ Foco em metodologia.</li>
+                </ul>
+                <a href="#comunidade" class="btn-custom btn-red w-full">Selecionar</a>
             </div>
             <div class="card-premium p-8 border-gold reveal">
                 <h3 class="text-2xl font-bold mb-4 gold-text">Evolution Max</h3>
                 <div class="text-white text-sm uppercase mb-4">Semestral</div>
                 <div class="text-4xl font-black mb-6">R$ 1.297</div>
                 <div class="text-gray-500 mb-6">6x R$ 237,78</div>
-                <ul class="text-sm text-gray-300 space-y-2"><li>✓ 6 meses de consultoria</li><li>✓ Transformação extrema</li></ul>
+                <p class="text-xs text-gold font-bold mb-4">📌 Excelente custo-benefício e resultados mais sólidos.</p>
+                <ul class="text-sm text-gray-300 space-y-2 mb-6">
+                    <li>✓ 6 meses de acompanhamento.</li>
+                    <li>✓ Planejamento progressivo.</li>
+                    <li>✓ Ajustes constantes.</li>
+                    <li>✓ Consolidação de rotina.</li>
+                    <li>✓ Adaptação neuromuscular.</li>
+                    <li>✓ Foco em metodologia.</li>
+                </ul>
+                <a href="#comunidade" class="btn-custom btn-red w-full">Selecionar</a>
             </div>
         </div>
     </section>
@@ -87,17 +119,26 @@
 
     <script>
         const depoimentos = [
-            "Método transformador, resultado sólido!",
-            "Melhor consultoria que já tive na vida.",
-            "Acompanhamento de elite, nota 10.",
-            "Shape mudou em 3 meses, surreal.",
-            "Murilo e Joao são os melhores.",
-            "Disciplina e resultado garantidos.",
-            "O investimento que valeu cada centavo."
+            { texto: "A metodologia de treino me trouxe uma hipertrofia que eu não conseguia há anos. O acompanhamento é impecável!", nome: "Ricardo Alves", foto: "https://i.pravatar.cc/100?u=1" },
+            { texto: "Em apenas 3 meses de Shape Max, meu percentual de gordura caiu drasticamente com o acompanhamento nutricional.", nome: "Juliana Mendes", foto: "https://i.pravatar.cc/100?u=2" },
+            { texto: "O suporte técnico na execução dos movimentos foi o que mudou meu jogo. Consultoria de altíssimo nível.", nome: "Marcos Vinicius", foto: "https://i.pravatar.cc/100?u=3" },
+            { texto: "O plano Evolution Max me deu a consistência que eu precisava. O melhor investimento para o meu shape.", nome: "Fernanda Silva", foto: "https://i.pravatar.cc/100?u=4" },
+            { texto: "Senti uma melhora real na minha performance e na minha longevidade dentro da academia. Treinos muito inteligentes.", nome: "Lucas Oliveira", foto: "https://i.pravatar.cc/100?u=5" },
+            { texto: "Ajustes constantes, atenção aos detalhes e uma dedicação nota 10 dos coaches. Recomendo muito!", nome: "Beatriz Souza", foto: "https://i.pravatar.cc/100?u=6" },
+            { texto: "A consultoria Forma Máxima é o que separa amadores de atletas de verdade. Resultados visíveis em poucas semanas.", nome: "Pedro Henrique", foto: "https://i.pravatar.cc/100?u=7" }
         ];
         let i = 0;
-        const depEl = document.getElementById('depoimento');
-        setInterval(() => { depEl.innerText = `"${depoimentos[i]}"`; i = (i + 1) % depoimentos.length; }, 4000);
+        const textoEl = document.getElementById('depoimento-texto');
+        const nomeEl = document.getElementById('depoimento-nome');
+        const fotoEl = document.getElementById('depoimento-foto');
+
+        setInterval(() => {
+            textoEl.innerText = `"${depoimentos[i].texto}"`;
+            nomeEl.innerText = depoimentos[i].nome;
+            fotoEl.style.backgroundImage = `url(${depoimentos[i].foto})`;
+            fotoEl.style.backgroundSize = "cover";
+            i = (i + 1) % depoimentos.length;
+        }, 4000);
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
