@@ -36,8 +36,8 @@
             <div class="flex flex-col md:flex-row gap-4 justify-center">
                 <a href="#planos" class="btn-custom btn-red btn-hover">Quero Evoluir →</a>
                 <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" class="btn-custom btn-whatsapp btn-hover">
-                    ATENDIMENTO EXCLUSIVO 
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.188 0-5.781 2.594-5.781 5.781 0 1.031.281 2.016.797 2.859l-.797 2.906 2.953-.75c.891.469 1.922.75 2.953.75 3.188 0 5.781-2.594 5.781-5.781 0-3.188-2.594-5.781-5.781-5.781z"/></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.188 0-5.781 2.594-5.781 5.781 0 1.031.281 2.016.797 2.859l-.797 2.906 2.953-.75c.891.469 1.922.75 2.953.75 3.188 0 5.781-2.594 5.781-5.781 0-3.188-2.594-5.781-5.781-5.781z"/></svg>
+                    ATENDIMENTO EXCLUSIVO
                 </a>
             </div>
         </div>
@@ -64,13 +64,15 @@
     </section>
 
     <section class="py-20 bg-neutral-900 text-center">
-        <img src="https://images.icon-icons.com/2642/PNG/512/google_logo_g_logo_icon_159348.png" alt="Logo Google" class="mx-auto w-12 mb-4">
-        <h2 class="text-3xl font-bold mb-6">Somos uma consultoria 5 estrelas no <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" class="text-gold underline">Google</a></h2>
-        <div class="max-w-xl mx-auto p-8 card-premium italic text-lg">
-            <p class="mb-4">"Ter iniciado a consultoria com a Forma mudou muito a minha visão sobre o que realmente é eficiente para conseguir progredir e otimizar meus treinos. Seguir o planejamento de vocês tem feito toda a diferença e os resultados já estão sendo super visíveis!"</p>
+        <img src="https://images.icon-icons.com/2642/PNG/512/google_logo_g_logo_icon_159348.png" alt="Logo Google" class="mx-auto w-24 mb-4">
+        <div class="text-amber-400 text-3xl font-bold mb-6">★★★★★ <span class="text-white font-normal text-xl ml-2">(11)</span></div>
+        <h2 class="text-xl font-medium mb-10">Somos uma consultoria 5 estrelas no <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" class="text-gold underline">Google</a></h2>
+        
+        <div id="depoimento-container" class="max-w-xl mx-auto p-8 card-premium italic text-lg transition-all duration-700">
+            <p id="depoimento-texto" class="mb-4">"Dedicação e metodologia Forma Máxima, o resultado é certo! 💪"</p>
             <div class="flex items-center justify-center gap-3">
-                <img src="https://i.imgur.com/y5I28DS.png" alt="Foto de Victoria" class="w-10 h-10 rounded-full object-cover">
-                <span class="font-bold text-sm uppercase gold-text">VICTORIA RODRIGUES</span>
+                <img id="depoimento-img" src="https://i.imgur.com/ZQFth7g.png" alt="Foto de Marcela Severino" class="w-12 h-12 rounded-full object-cover">
+                <span id="depoimento-nome" class="font-bold text-sm uppercase gold-text">MARCELA SAN SEVERINO</span>
             </div>
         </div>
     </section>
@@ -129,7 +131,7 @@
         <h2 class="text-center text-4xl font-bold uppercase mb-16">Resultados <span class="gold-text">Reais</span></h2>
         <div class="grid md:grid-cols-3 gap-8">
             <div class="card-premium p-4">
-                <h3 class="text-center font-bold mb-4">Eduarda</h3>
+                <h3 class="text-center font-bold mb-4">Victoria</h3>
                 <div class="img-container">
                     <div id="slider1" class="flex transition-transform duration-500 w-full h-full">
                         <img src="https://i.imgur.com/BEKft3U.png" class="w-full flex-shrink-0 object-contain">
@@ -152,7 +154,7 @@
                 </div>
             </div>
             <div class="card-premium p-4">
-                <h3 class="text-center font-bold mb-4">Ana</h3>
+                <h3 class="text-center font-bold mb-4">Eduarda</h3>
                 <div class="img-container">
                     <div id="slider3" class="flex transition-transform duration-500 w-full h-full">
                         <img src="https://i.imgur.com/h285bpG.png" class="w-full flex-shrink-0 object-contain">
@@ -172,7 +174,7 @@
 
     <section id="comunidade" class="py-24 bg-red-700 text-white text-center">
         <img src="https://play-lh.googleusercontent.com/aVsTwWBG8K1tSmZpuOEL5mNN7kv-F9yCgggmVnsvDCT5teGeYlP3KM0b_OCZPyhGUyw" class="mx-auto mb-6 w-24 h-24 rounded-2xl">
-        <h2 class="text-4xl font-black uppercase mb-6">Faça parte da nossa comunidade gratuita</h2>
+        <h2 class="text-4xl font-black uppercase mb-6">Faça parte do Elite</h2>
         <a href="https://share.gymrats.app/join?code=PZSYCLKE" class="inline-block bg-black px-10 py-4 font-bold uppercase hover:bg-neutral-800 transition">Acessar Gym Rats</a>
     </section>
 
@@ -188,6 +190,26 @@
         setupSlider('slider1', 4);
         setupSlider('slider2', 5);
         setupSlider('slider3', 4);
+        
+        // Dinâmica de depoimentos
+        const depoimentos = [
+            {texto: '"Dedicação e metodologia Forma Máxima, o resultado é certo! 💪"', nome: "MARCELA SEVERINO", img: "https://i.imgur.com/ZQFth7g.png"},
+            {texto: '"Ter iniciado a consultoria com a Forma mudou muito a minha visão sobre o que realmente é eficiente para conseguir progredir e otimizar meus treinos."', nome: "VICTORIA RODRIGUES", img: "https://i.imgur.com/y5I28DS.png"},
+            {texto: '"Em apenas 4 semanas, minha evolução já me impressiona: mais definição, e um físico mais estético. Obrigado Forma Máxima. 🚀"', nome: "EDUARDA OLIVEIRA", img: "https://i.imgur.com/D1vDIML.png"}
+        ];
+        let dIndex = 0;
+        setInterval(() => {
+            dIndex = (dIndex + 1) % depoimentos.length;
+            const container = document.getElementById('depoimento-container');
+            container.style.opacity = 0;
+            setTimeout(() => {
+                document.getElementById('depoimento-texto').innerText = depoimentos[dIndex].texto;
+                document.getElementById('depoimento-nome').innerText = depoimentos[dIndex].nome;
+                document.getElementById('depoimento-img').src = depoimentos[dIndex].img;
+                container.style.opacity = 1;
+            }, 500);
+        }, 5000);
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         });
