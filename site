@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Máxima | Performance de Elite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: #fff; }
+        .gold-text { color: #d4af37; }
+        .btn-custom { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; font-weight: bold; text-transform: uppercase; transition: all 0.3s ease; border: none; cursor: pointer; gap: 10px; }
+        .btn-whatsapp { background: linear-gradient(90deg, #059669, #065f46); }
+        .btn-red { background: linear-gradient(90deg, #b91c1c, #7f1d1d); }
+        .card-premium { background: rgba(18, 18, 18, 0.8); backdrop-filter: blur(10px); border: 1px solid #222; transition: transform 0.3s ease; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .star { color: #d4af37; }
+    </style>
+</head>
+<body>
+
+    <header class="min-h-screen flex flex-col justify-center items-center p-6 text-center bg-[radial-gradient(circle_at_center,_#262626_0%,_#050505_70%)]">
+        <div class="reveal active">
+            <span class="text-gold tracking-[0.3em] uppercase text-sm mb-6 block">Murilo Castanheiro & Joao Coutinho</span>
+            <img src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima" class="mx-auto mb-10 w-full max-w-lg px-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+            <p class="max-w-xl mx-auto text-neutral-300 mb-10 text-lg">O método definitivo para quem não aceita resultados medianos.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#planos" class="btn-custom btn-red">Quero Evoluir →</a>
+                <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" class="btn-custom btn-whatsapp">Entrar em Contato →</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 border-t border-neutral-900">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold uppercase mb-6">A Ciência por trás do <span class="gold-text">Shape</span></h2>
+                <p class="text-gray-400">Unimos metodologia e estratégia para alta performance.</p>
+            </div>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Murilo Castanheiro</h3></div>
+                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Joao Coutinho</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-neutral-900 text-center">
+        <h2 class="text-3xl font-bold mb-6">Somos uma consultoria 5 estrelas no <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" class="text-gold underline">Google</a></h2>
+        <div class="flex justify-center gap-1 mb-8 text-2xl">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <div id="depoimento" class="max-w-2xl mx-auto p-8 card-premium italic text-lg transition-all duration-500">"Carregando..."</div>
+    </section>
+
+    <section id="planos" class="py-24 max-w-7xl mx-auto px-6">
+        <h2 class="text-center text-4xl font-bold uppercase mb-16">Escolha seu <span class="gold-text">Destino</span></h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="card-premium p-8 reveal">
+                <h3 class="text-2xl font-bold mb-4">Shape em Forma</h3>
+                <div class="text-gold text-sm uppercase mb-4">Mensal</div>
+                <div class="text-4xl font-black mb-6">R$ 297</div>
+                <ul class="text-sm text-gray-400 space-y-2"><li>✓ Acompanhamento inicial</li><li>✓ Treino básico</li></ul>
+            </div>
+            <div class="card-premium p-8 reveal">
+                <h3 class="text-2xl font-bold mb-4">Shape Max</h3>
+                <div class="text-gold text-sm uppercase mb-4">Trimestral</div>
+                <div class="text-4xl font-black mb-1">R$ 697</div>
+                <div class="text-gray-500 mb-6">3x R$ 255,57</div>
+                <ul class="text-sm text-gray-400 space-y-2"><li>✓ 3 meses de acompanhamento</li><li>✓ Consulta Nutricional</li></ul>
+            </div>
+            <div class="card-premium p-8 border-gold reveal">
+                <h3 class="text-2xl font-bold mb-4 gold-text">Evolution Max</h3>
+                <div class="text-white text-sm uppercase mb-4">Semestral</div>
+                <div class="text-4xl font-black mb-6">R$ 1.297</div>
+                <div class="text-gray-500 mb-6">6x R$ 237,78</div>
+                <ul class="text-sm text-gray-300 space-y-2"><li>✓ 6 meses de consultoria</li><li>✓ Transformação extrema</li></ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="comunidade" class="py-24 bg-red-700 text-white text-center">
+        <img src="https://play-lh.googleusercontent.com/aVsTwWBG8K1tSmZpuOEL5mNN7kv-F9yCgggmVnsvDCT5teGeYlP3KM0b_OCZPyhGUyw" class="mx-auto mb-6 w-24 h-24 rounded-2xl">
+        <h2 class="text-4xl font-black uppercase mb-6">Faça parte do Elite</h2>
+        <a href="https://share.gymrats.app/join?code=PZSYCLKE" class="inline-block bg-black px-10 py-4 font-bold uppercase hover:bg-neutral-800 transition">Acessar Gym Rats</a>
+    </section>
+
+    <script>
+        const depoimentos = [
+            "Método transformador, resultado sólido!",
+            "Melhor consultoria que já tive na vida.",
+            "Acompanhamento de elite, nota 10.",
+            "Shape mudou em 3 meses, surreal.",
+            "Murilo e Joao são os melhores.",
+            "Disciplina e resultado garantidos.",
+            "O investimento que valeu cada centavo."
+        ];
+        let i = 0;
+        const depEl = document.getElementById('depoimento');
+        setInterval(() => { depEl.innerText = `"${depoimentos[i]}"`; i = (i + 1) % depoimentos.length; }, 4000);
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
