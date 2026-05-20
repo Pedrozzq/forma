@@ -1,623 +1,108 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="theme-color" content="#000" />
-    <title>FORMA MÁXIMA | Sua Evolução Começa Aqui</title>
-    <meta name="description" content="O protocolo de 21 dias que vai transformar seu shape para o Carnaval. Método Forma Máxima." />
-    
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Máxima | Performance de Elite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@300;600;800&family=Cinzel:wght@900&display=swap');
-
-      :root {
-        --primary: #d4ff00; /* Verde Lima Neon */
-        --primary-glow: rgba(212, 255, 0, 0.6);
-        --accent: #ff00ff; /* Rosa Carnaval */
-        --bg-dark: #070707;
-        --bg-card: #111111;
-        --text-main: #ffffff;
-        --text-dim: #b0b0b0;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        background-color: var(--bg-dark);
-        color: var(--text-main);
-        font-family: 'Inter', sans-serif;
-        line-height: 1.6;
-        overflow-x: hidden;
-      }
-
-      /* --- ANIMAÇÕES DE CARNAVAL MELHORADAS --- */
-      .carnival-decoration {
-        position: fixed;
-        pointer-events: none;
-        z-index: 1;
-        opacity: 0.7;
-        will-change: transform;
-      }
-
-      @keyframes floatAndSpin {
-        0% { transform: translateY(0) rotate(0deg) translateX(0); }
-        33% { transform: translateY(-30px) rotate(120deg) translateX(15px); }
-        66% { transform: translateY(20px) rotate(240deg) translateX(-15px); }
-        100% { transform: translateY(0) rotate(360deg) translateX(0); }
-      }
-
-      .floating-mask {
-        font-size: 2.8rem;
-        animation: floatAndSpin 8s ease-in-out infinite;
-        filter: drop-shadow(0 0 10px var(--primary-glow));
-      }
-
-      .confetti {
-        position: absolute;
-        width: 12px;
-        height: 12px;
-        border-radius: 2px;
-        animation: fall linear infinite;
-      }
-
-      @keyframes fall {
-        0% { transform: translateY(-10vh) rotate(0deg) translateX(0); }
-        100% { transform: translateY(110vh) rotate(720deg) translateX(50px); }
-      }
-
-      /* --- LAYOUT --- */
-      .root {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        position: relative;
-        z-index: 2;
-      }
-
-      section {
-        width: 100%;
-        max-width: 1100px;
-        padding: 100px 24px;
-        min-height: 50vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        opacity: 0;
-        transform: translateY(40px);
-        transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      section.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* --- HERO --- */
-      .hero {
-        height: 100vh;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        background: radial-gradient(circle at 50% 50%, #2a3300 0%, #000 85%);
-      }
-
-      .brand-logo-img {
-        width: 150px;
-        margin-bottom: 20px;
-        filter: drop-shadow(0 0 25px var(--primary-glow));
-      }
-
-      h1 {
-        font-size: clamp(3.2rem, 11vw, 7rem);
-        font-weight: 900;
-        text-transform: uppercase;
-        line-height: 0.82;
-        margin-bottom: 2rem;
-        letter-spacing: -4px;
-        font-style: italic;
-        background: transparent;
-      }
-
-      .highlight {
-        color: var(--primary);
-        text-shadow: 0 0 35px var(--primary-glow);
-        animation: neonPulse 2s infinite alternate;
-      }
-
-      @keyframes neonPulse {
-        from { text-shadow: 0 0 20px var(--primary-glow); }
-        to { text-shadow: 0 0 45px var(--primary-glow), 0 0 10px #fff; }
-      }
-
-      .subtitle {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 300;
-        font-size: 1.4rem;
-        color: var(--text-dim);
-        max-width: 750px;
-        margin: 0 auto 3rem;
-        line-height: 1.6;
-      }
-
-      /* --- CARDS PROJETO --- */
-      .carnaval-project {
-        background: var(--bg-card);
-        border-radius: 50px;
-        padding: 80px 50px;
-        border: 1px solid #222;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 40px 80px rgba(0,0,0,0.9);
-      }
-
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        margin-top: 60px;
-      }
-
-      .card {
-        padding: 45px 35px;
-        background: #0a0a0a;
-        border-radius: 35px;
-        border: 1px solid #1a1a1a;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-
-      .card:hover {
-        border-color: var(--primary);
-        transform: translateY(-15px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(212, 255, 0, 0.15);
-      }
-
-      .card h3 {
-        color: var(--primary);
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        font-size: 1.8rem;
-        font-weight: 900;
-      }
-
-      /* --- SEÇÃO DE PREMIAÇÕES --- */
-      .awards-section {
-        background: radial-gradient(circle at bottom, #1a001a 0%, transparent 70%);
-      }
-
-      .awards-title {
-        font-size: clamp(2rem, 6vw, 4rem);
-        text-align: center;
-        font-weight: 900;
-        margin-bottom: 50px;
-        color: var(--accent);
-        text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-      }
-
-      .awards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-      }
-
-      .award-item {
-        background: rgba(255, 255, 255, 0.03);
-        padding: 25px;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        border: 1px solid rgba(255, 0, 255, 0.1);
-        transition: all 0.3s ease;
-        animation: floatAward 4s ease-in-out infinite;
-        animation-delay: calc(var(--order) * 0.2s);
-      }
-
-      .award-item:hover {
-        border-color: var(--accent);
-        transform: scale(1.05);
-        background: rgba(255, 0, 255, 0.05);
-      }
-
-      .award-icon {
-        font-size: 2rem;
-      }
-
-      .award-text {
-        font-weight: 700;
-        font-family: 'Montserrat', sans-serif;
-        color: #fff;
-      }
-
-      @keyframes floatAward {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-      }
-
-      /* --- EQUIPE --- */
-      .team-section {
-        text-align: center;
-      }
-
-      .team-container {
-        position: relative;
-        max-width: 900px;
-        margin: 50px auto;
-      }
-
-      .team-image-wrapper {
-        position: relative;
-        border-radius: 40px;
-        overflow: hidden;
-        border: 4px solid rgba(212, 255, 0, 0.2);
-        transition: all 0.6s ease;
-      }
-
-      .team-photo {
-        width: 100%;
-        height: auto;
-        display: block;
-        filter: brightness(1.05) contrast(1.1);
-        transition: transform 0.8s ease, filter 0.8s ease;
-      }
-
-      .team-image-wrapper:hover .team-photo {
-        transform: scale(1.05);
-        filter: brightness(1.15) contrast(1.15);
-      }
-
-      .team-content-box {
-        margin-top: -80px;
-        position: relative;
-        z-index: 5;
-        background: rgba(17, 17, 17, 0.95);
-        padding: 45px;
-        border-radius: 35px;
-        max-width: 850px;
-        margin-left: auto;
-        margin-right: auto;
-        border: 1px solid var(--primary);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-      }
-
-      .team-names {
-        font-family: 'Cinzel', serif;
-        font-size: 2.2rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        color: #fff;
-        margin-bottom: 10px;
-        letter-spacing: 3px;
-        text-shadow: 0 0 15px rgba(212, 255, 0, 0.3);
-      }
-
-      .team-names span { color: var(--primary); }
-
-      /* --- SEÇÃO DOMINE O CARNAVAL --- */
-      .impact-section {
-        text-align: center;
-        background: linear-gradient(180deg, transparent, #151515 50%, transparent);
-        padding: 150px 24px;
-        position: relative;
-      }
-
-      .impact-title {
-        font-size: clamp(2.8rem, 9vw, 6rem);
-        font-weight: 900;
-        text-transform: uppercase;
-        color: #fff;
-        margin-bottom: 30px;
-        letter-spacing: -3px;
-        font-style: italic;
-      }
-
-      /* --- COUNTDOWN TIMER --- */
-      .countdown-container {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 40px 0;
-        font-family: 'Inter', sans-serif;
-      }
-
-      .countdown-item {
-        background: rgba(212, 255, 0, 0.1);
-        border: 1px solid var(--primary);
-        padding: 20px;
-        border-radius: 20px;
-        min-width: 100px;
-        box-shadow: 0 0 20px var(--primary-glow);
-        animation: neonPulse 2s infinite alternate;
-      }
-
-      .countdown-number {
-        display: block;
-        font-size: 3rem;
-        font-weight: 900;
-        color: var(--primary);
-        line-height: 1;
-      }
-
-      .countdown-label {
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        color: #fff;
-        letter-spacing: 1px;
-        margin-top: 5px;
-        display: block;
-      }
-
-      /* --- BOTÕES E UI --- */
-      .btn {
-        display: inline-block;
-        padding: 24px 75px;
-        background-color: var(--primary);
-        color: #000;
-        text-decoration: none;
-        font-weight: 900;
-        text-transform: uppercase;
-        border-radius: 100px;
-        font-size: 1.25rem;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        cursor: pointer;
-        border: none;
-        box-shadow: 0 15px 30px rgba(212, 255, 0, 0.3);
-      }
-
-      .btn:hover {
-        transform: scale(1.08) translateY(-5px);
-        box-shadow: 0 20px 50px var(--primary-glow);
-        background-color: #fff;
-      }
-
-      .insta-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-        padding: 12px 30px;
-        border: 2px solid var(--accent);
-        color: var(--accent);
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: 800;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        letter-spacing: 1px;
-      }
-
-      .insta-btn:hover {
-        background: var(--accent);
-        color: #fff;
-        box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
-      }
-
-      @media (max-width: 768px) {
-        h1 { font-size: 3.5rem; letter-spacing: -2px; }
-        .team-content-box { padding: 30px 20px; width: 95%; margin-top: -40px; }
-        .team-names { font-size: 1.5rem; letter-spacing: 2px; }
-        .impact-title { font-size: 3.2rem; }
-        section { padding: 60px 20px; }
-      }
+        body { font-family: 'Montserrat', sans-serif; background-color: #050505; color: #fff; }
+        .gold-text { color: #d4af37; }
+        .btn-custom { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; font-weight: bold; text-transform: uppercase; transition: all 0.3s ease; border: none; cursor: pointer; gap: 10px; }
+        .btn-whatsapp { background: linear-gradient(90deg, #059669, #065f46); }
+        .btn-red { background: linear-gradient(90deg, #b91c1c, #7f1d1d); }
+        .card-premium { background: rgba(18, 18, 18, 0.8); backdrop-filter: blur(10px); border: 1px solid #222; transition: transform 0.3s ease; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .star { color: #d4af37; }
     </style>
-  </head>
-  <body>
-    <div id="decorations-container"></div>
+</head>
+<body>
 
-    <div class="root">
-      <!-- HERO -->
-      <section class="hero visible">
-        <div style="z-index: 10; background: transparent;">
-          <img src="https://i.imgur.com/ubmiT7B.png" class="brand-logo-img" alt="Logo Forma Máxima">
-          <br>
-          <h1 style="background: transparent;">SUA <span class="highlight">EVOLUÇÃO</span><br>COMEÇA AQUI</h1>
-          <p class="subtitle">O <span class="highlight" style="font-weight: 800;">Projeto 21 Dias</span> é o protocolo definitivo para quem não quer apenas passar pelo Carnaval, mas ser o destaque dele através de uma transformação real.</p>
-          <a href="https://chat.whatsapp.com/ILO972VgB3p1Nzvkg1tHFA" target="_blank" class="btn">QUERO MINHA EVOLUÇÃO</a>
-        </div>
-      </section>
-
-      <!-- MÉTODO ATUALIZADO -->
-      <section id="projeto" class="reveal">
-        <div class="carnaval-project">
-          <h2 style="font-size: 3rem; font-weight: 900; text-transform: uppercase;">O ESQUENTA PARA O <span class="highlight">SEU SHAPE</span></h2>
-          <p style="font-family: 'Montserrat', sans-serif; font-size: 1.25rem; color: var(--text-dim); margin-top: 15px;">Prepare-se para brilhar na avenida com o <strong>Projeto 21 Dias</strong>: a combinação perfeita de intensidade e foco para você conquistar sua melhor versão até o Carnaval.</p>
-          
-          <div class="grid-3">
-            <div class="card">
-              <h3>Constância</h3>
-              <p>O sucesso é a soma de pequenos esforços repetidos. Nosso método blinda sua mente contra a procrastinação.</p>
+    <header class="min-h-screen flex flex-col justify-center items-center p-6 text-center bg-[radial-gradient(circle_at_center,_#262626_0%,_#050505_70%)]">
+        <div class="reveal active">
+            <span class="text-gold tracking-[0.3em] uppercase text-sm mb-6 block">Murilo Castanheiro & Joao Coutinho</span>
+            <img src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima" class="mx-auto mb-10 w-full max-w-lg px-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+            <p class="max-w-xl mx-auto text-neutral-300 mb-10 text-lg">O método definitivo para quem não aceita resultados medianos.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#planos" class="btn-custom btn-red">Quero Evoluir →</a>
+                <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" class="btn-custom btn-whatsapp">Entrar em Contato →</a>
             </div>
-            <div class="card">
-              <h3>Movimento</h3>
-              <p>Ativação metabólica máxima. Cada treino é desenhado para otimizar sua queima calórica e tônus muscular.</p>
+        </div>
+    </header>
+
+    <section class="py-24 border-t border-neutral-900">
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl font-bold uppercase mb-6">A Ciência por trás do <span class="gold-text">Shape</span></h2>
+                <p class="text-gray-400">Unimos metodologia e estratégia para alta performance.</p>
             </div>
-            <div class="card">
-              <h3>Hábitos</h3>
-              <p>Vença o jogo de longo prazo. Transformamos sua rotina para que o shape conquistado seja permanente.</p>
+            <div class="grid grid-cols-1 gap-6">
+                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Murilo Castanheiro</h3></div>
+                <div class="card-premium p-6 border-l-4 border-gold"><h3 class="font-bold text-xl uppercase">Joao Coutinho</h3></div>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      <!-- SEÇÃO DE PREMIAÇÕES -->
-      <section id="premios" class="reveal awards-section">
-        <h2 class="awards-title">PREMIAÇÕES CONFIRMADAS</h2>
-        <div class="awards-grid">
-          <div class="award-item" style="--order: 1">
-            <span class="award-icon">🥇</span>
-            <span class="award-text">1 Plano Trimestral Forma Máxima Consultoria</span>
-          </div>
-          <div class="award-item" style="--order: 2">
-            <span class="award-icon">🎉</span>
-            <span class="award-text">1 Camarote Bloco Chapado</span>
-          </div>
-          <div class="award-item" style="--order: 3">
-            <span class="award-icon">🌊</span>
-            <span class="award-text">1 Camarote Bloco Praia</span>
-          </div>
-          <div class="award-item" style="--order: 4">
-            <span class="award-icon">🍽️</span>
-            <span class="award-text">1 Almoço no Restaurante Contos de Reis</span>
-          </div>
-          <div class="award-item" style="--order: 5">
-            <span class="award-icon">🏨</span>
-            <span class="award-text">1 Hospedagem com almoço e café da manhã na Pousada Zacarias</span>
-          </div>
-          <div class="award-item" style="--order: 6">
-            <span class="award-icon">🍻</span>
-            <span class="award-text">R$300 de consumação na Wolf Lounge Beer</span>
-          </div>
+    <section class="py-20 bg-neutral-900 text-center">
+        <h2 class="text-3xl font-bold mb-6">Somos uma consultoria 5 estrelas no <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" class="text-gold underline">Google</a></h2>
+        <div class="flex justify-center gap-1 mb-8 text-2xl">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
         </div>
-      </section>
+        <div id="depoimento" class="max-w-2xl mx-auto p-8 card-premium italic text-lg transition-all duration-500">"Carregando..."</div>
+    </section>
 
-      <!-- EQUIPE -->
-      <section id="equipe" class="reveal team-section">
-        <h2 style="font-size: 2.8rem; font-weight: 900; margin-bottom: 40px; text-transform: uppercase;">ESTRATEGISTAS DO <span class="highlight">SHAPE</span></h2>
-        
-        <div class="team-container">
-          <div class="team-image-wrapper">
-            <img src="https://i.imgur.com/3SR8ypk.png" class="team-photo" alt="Murilo Castanheira e João Coutinho">
-          </div>
-          <div class="team-content-box">
-            <div class="team-names">MURILO CASTANHEIRA <span>&</span> JOÃO COUTINHO</div>
-            <p class="team-description">
-              Com centenas de casos de sucesso, Murilo e João unem ciência e prática para guiar você ao topo da sua performance física e estética.
-            </p>
-          </div>
+    <section id="planos" class="py-24 max-w-7xl mx-auto px-6">
+        <h2 class="text-center text-4xl font-bold uppercase mb-16">Escolha seu <span class="gold-text">Destino</span></h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="card-premium p-8 reveal">
+                <h3 class="text-2xl font-bold mb-4">Shape em Forma</h3>
+                <div class="text-gold text-sm uppercase mb-4">Mensal</div>
+                <div class="text-4xl font-black mb-6">R$ 297</div>
+                <ul class="text-sm text-gray-400 space-y-2"><li>✓ Acompanhamento inicial</li><li>✓ Treino básico</li></ul>
+            </div>
+            <div class="card-premium p-8 reveal">
+                <h3 class="text-2xl font-bold mb-4">Shape Max</h3>
+                <div class="text-gold text-sm uppercase mb-4">Trimestral</div>
+                <div class="text-4xl font-black mb-1">R$ 697</div>
+                <div class="text-gray-500 mb-6">3x R$ 255,57</div>
+                <ul class="text-sm text-gray-400 space-y-2"><li>✓ 3 meses de acompanhamento</li><li>✓ Consulta Nutricional</li></ul>
+            </div>
+            <div class="card-premium p-8 border-gold reveal">
+                <h3 class="text-2xl font-bold mb-4 gold-text">Evolution Max</h3>
+                <div class="text-white text-sm uppercase mb-4">Semestral</div>
+                <div class="text-4xl font-black mb-6">R$ 1.297</div>
+                <div class="text-gray-500 mb-6">6x R$ 237,78</div>
+                <ul class="text-sm text-gray-300 space-y-2"><li>✓ 6 meses de consultoria</li><li>✓ Transformação extrema</li></ul>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <!-- DOMINE O CARNAVAL & COUNTDOWN -->
-      <section class="reveal impact-section">
-        <h2 class="impact-title">DOMINE O <span class="highlight">CARNAVAL</span></h2>
-        
-        <!-- Contador Regressivo -->
-        <div class="countdown-container">
-          <div class="countdown-item">
-            <span class="countdown-number" id="days">00</span>
-            <span class="countdown-label">Dias</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="hours">00</span>
-            <span class="countdown-label">Horas</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="minutes">00</span>
-            <span class="countdown-label">Min</span>
-          </div>
-          <div class="countdown-item">
-            <span class="countdown-number" id="seconds">00</span>
-            <span class="countdown-label">Seg</span>
-          </div>
-        </div>
-
-        <p class="subtitle">A contagem regressiva começou. Você vai chegar lá como espectador ou como protagonista?</p>
-        <a href="https://chat.whatsapp.com/ILO972VgB3p1Nzvkg1tHFA" target="_blank" class="btn">PARTICIPAR AGORA DO PROJETO</a>
-      </section>
-
-      <footer style="padding: 100px 20px; text-align: center; color: var(--text-dim); border-top: 1px solid #1a1a1a; width: 100%;">
-        <img src="https://i.imgur.com/ubmiT7B.png" style="width: 50px; opacity: 0.4; margin-bottom: 25px;">
-        <p style="letter-spacing: 2px; font-weight: 800; color: #fff; margin-bottom: 10px;">FORMA MÁXIMA</p>
-        <p>&copy; 2026 - TRANSFORMANDO ESFORÇO EM RESULTADO REAL.</p>
-        
-        <!-- Botão Instagram -->
-        <a href="https://instagram.com/forma.maxima" target="_blank" class="insta-btn">
-          SIGA NO INSTAGRAM
-        </a>
-      </footer>
-    </div>
+    <section id="comunidade" class="py-24 bg-red-700 text-white text-center">
+        <img src="https://play-lh.googleusercontent.com/aVsTwWBG8K1tSmZpuOEL5mNN7kv-F9yCgggmVnsvDCT5teGeYlP3KM0b_OCZPyhGUyw" class="mx-auto mb-6 w-24 h-24 rounded-2xl">
+        <h2 class="text-4xl font-black uppercase mb-6">Faça parte do Elite</h2>
+        <a href="https://share.gymrats.app/join?code=PZSYCLKE" class="inline-block bg-black px-10 py-4 font-bold uppercase hover:bg-neutral-800 transition">Acessar Gym Rats</a>
+    </section>
 
     <script>
-      // Lógica do Contador Regressivo para 13/02/2026
-      const targetDate = new Date("Feb 13, 2026 00:00:00").getTime();
-
-      const updateCountdown = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        if(daysEl) daysEl.innerText = d.toString().padStart(2, '0');
-        if(hoursEl) hoursEl.innerText = h.toString().padStart(2, '0');
-        if(minutesEl) minutesEl.innerText = m.toString().padStart(2, '0');
-        if(secondsEl) secondsEl.innerText = s.toString().padStart(2, '0');
-
-        if (distance < 0) {
-          clearInterval(updateCountdown);
-          const container = document.querySelector(".countdown-container");
-          if(container) container.innerHTML = "<h3 style='color:var(--primary)'>O CARNAVAL COMEÇOU!</h3>";
-        }
-      }, 1000);
-
-      // Sistema de Decoração Parallax e Animação
-      const container = document.getElementById('decorations-container');
-      const emojis = ['🎭', '✨', '🎊', '🎉', '🔥'];
-      const colors = ['#d4ff00', '#ff00ff', '#7a2fff', '#00ffff'];
-
-      function initDecor() {
-        if(!container) return;
-        for (let i = 0; i < 50; i++) {
-          const div = document.createElement('div');
-          div.className = 'carnival-decoration confetti';
-          div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-          div.style.left = Math.random() * 100 + 'vw';
-          div.style.top = '-' + (Math.random() * 20) + 'vh';
-          div.style.animationDuration = (Math.random() * 3 + 4) + 's';
-          div.style.animationDelay = (Math.random() * 10) + 's';
-          div.dataset.speed = (Math.random() * 0.4) + 0.1;
-          container.appendChild(div);
-        }
-
-        for (let i = 0; i < 15; i++) {
-          const div = document.createElement('div');
-          div.className = 'carnival-decoration floating-mask';
-          div.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-          div.style.left = Math.random() * 90 + 'vw';
-          div.style.top = Math.random() * 90 + 'vh';
-          div.style.animationDelay = (Math.random() * 5) + 's';
-          div.dataset.speed = (Math.random() * 0.2) + 0.05;
-          container.appendChild(div);
-        }
-      }
-
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        document.querySelectorAll('.carnival-decoration').forEach(item => {
-          const speed = item.dataset.speed;
-          const yPos = -(scrolled * speed);
-          const xPos = Math.sin(scrolled * 0.002) * 20;
-          item.style.transform = `translateY(${yPos}px) translateX(${xPos}px)`;
+        const depoimentos = [
+            "Método transformador, resultado sólido!",
+            "Melhor consultoria que já tive na vida.",
+            "Acompanhamento de elite, nota 10.",
+            "Shape mudou em 3 meses, surreal.",
+            "Murilo e Joao são os melhores.",
+            "Disciplina e resultado garantidos.",
+            "O investimento que valeu cada centavo."
+        ];
+        let i = 0;
+        const depEl = document.getElementById('depoimento');
+        setInterval(() => { depEl.innerText = `"${depoimentos[i]}"`; i = (i + 1) % depoimentos.length; }, 4000);
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
         });
-      });
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.15 });
-
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-      window.onload = initDecor;
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
-  </body>
+</body>
 </html>
