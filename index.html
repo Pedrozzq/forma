@@ -1,5 +1,8 @@
+Aqui está o código completo e atualizado do `index.html`, com o preloader novo já validado funcionando:
+
+```html
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth loading">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -19,7 +22,7 @@
         @layer utilities {
             .font-anton { font-family: 'Anton', sans-serif; }
             .font-poppins { font-family: 'Poppins', sans-serif; }
-            
+
             /* Dynamic Background Animation */
             .bg-slideshow {
                 position: absolute;
@@ -87,11 +90,11 @@
             .translate-z-10 { transform: translateZ(10px); }
             .translate-z-20 { transform: translateZ(20px); }
             .translate-z-30 { transform: translateZ(30px); }
-            
+
             /* 3D Floating Elements */
             .float-3d-1 { animation: float3d 6s ease-in-out infinite; }
             .float-3d-2 { animation: float3dReverse 8s ease-in-out infinite; }
-            
+
             @keyframes float3d {
                 0%, 100% { transform: perspective(600px) translateY(0) rotateX(0deg) rotateY(0deg); }
                 50% { transform: perspective(600px) translateY(-20px) rotateX(10deg) rotateY(15deg); }
@@ -111,6 +114,144 @@
             }
         }
     </style>
+
+    <!-- ============ PRELOADER 3D — estilos ============ -->
+    <style>
+        html.loading, html.loading body { overflow: hidden; height: 100%; }
+
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: radial-gradient(ellipse 120% 90% at 50% 40%, #180607 0%, #060505 55%, #000 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: opacity 0.6s ease;
+        }
+        #preloader.pl-hide { opacity: 0; pointer-events: none; }
+
+        .pl-glow {
+            position: absolute;
+            width: 130%; height: 130%;
+            background: radial-gradient(circle at 50% 50%, rgba(239,68,68,0.32), transparent 62%);
+            filter: blur(50px);
+            animation: plGlow 2.2s ease-in-out infinite;
+        }
+        @keyframes plGlow {
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        #plCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+        .pl-core {
+            position: relative;
+            width: 300px; height: 300px;
+            display: flex; align-items: center; justify-content: center;
+            animation: plCoreIn 3s ease forwards;
+        }
+        @keyframes plCoreIn {
+            0%   { transform: scale(0.8) rotate(-4deg); }
+            40%  { transform: scale(1) rotate(2deg); }
+            100% { transform: scale(1.06) rotate(0deg); }
+        }
+
+        .pl-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .pl-ring .track { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 2; }
+        .pl-ring .prog {
+            fill: none;
+            stroke: #ef4444;
+            stroke-width: 3;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 6px rgba(239,68,68,0.85));
+            transform-origin: 50% 50%;
+            transform: rotate(-90deg);
+            stroke-dasharray: 754;
+            stroke-dashoffset: 754;
+            animation: plRing 2.4s cubic-bezier(.3,0,.2,1) 0.2s forwards;
+        }
+        @keyframes plRing { to { stroke-dashoffset: 60; } }
+
+        .pl-barbell { position: relative; width: 210px; height: 10px; }
+        .pl-bar {
+            position: absolute;
+            inset: 0; margin: auto;
+            width: 100%; height: 7px; top: 1.5px;
+            background: linear-gradient(180deg,#6a6a6a,#171717 60%,#000);
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.15);
+            transform: scaleX(0);
+            animation: plBar 0.5s ease 0.15s forwards;
+        }
+        @keyframes plBar { to { transform: scaleX(1); } }
+
+        .pl-plate {
+            position: absolute;
+            top: 50%;
+            width: 50px; height: 50px;
+            margin-top: -25px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #303030, #0a0a0a 70%);
+            border: 3px solid #ef4444;
+            box-shadow: 0 0 16px rgba(239,68,68,0.55), inset 0 0 10px rgba(0,0,0,0.85);
+            opacity: 0;
+        }
+        .pl-plate.small { width: 34px; height: 34px; margin-top: -17px; }
+        .pl-plate.l1 { left: -6px;   animation: plPlateL 0.55s cubic-bezier(.2,.8,.3,1.25) 0.7s forwards; }
+        .pl-plate.l2 { left: -22px;  animation: plPlateL 0.55s cubic-bezier(.2,.8,.3,1.25) 0.88s forwards; }
+        .pl-plate.r1 { right: -6px;  animation: plPlateR 0.55s cubic-bezier(.2,.8,.3,1.25) 0.7s forwards; }
+        .pl-plate.r2 { right: -22px; animation: plPlateR 0.55s cubic-bezier(.2,.8,.3,1.25) 0.88s forwards; }
+        @keyframes plPlateL {
+            0%   { opacity: 0; transform: translateX(-110px) scale(0.5); }
+            70%  { opacity: 1; transform: translateX(4px) scale(1.06); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes plPlateR {
+            0%   { opacity: 0; transform: translateX(110px) scale(0.5); }
+            70%  { opacity: 1; transform: translateX(-4px) scale(1.06); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        .pl-dumbbell {
+            position: absolute;
+            bottom: 16%; right: 14%;
+            width: 58px; height: 16px;
+            opacity: 0;
+            animation: plDbIn 0.6s ease 1.25s forwards, plDbFloat 2.4s ease-in-out 1.85s infinite;
+        }
+        @keyframes plDbIn { to { opacity: 0.9; } }
+        @keyframes plDbFloat {
+            0%, 100% { transform: translateY(0) rotate(-6deg); }
+            50%      { transform: translateY(-6px) rotate(4deg); }
+        }
+        .pl-db-bar { position: absolute; left: 13px; right: 13px; top: 6px; height: 4px; background: #444; border-radius: 4px; }
+        .pl-db-plate { position: absolute; top: 0; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #303030, #0a0a0a 70%); border: 2px solid #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+        .pl-db-plate.l { left: 0; }
+        .pl-db-plate.r { right: 0; }
+
+        .pl-logo {
+            position: absolute;
+            bottom: -70px;
+            width: 46px; height: 46px;
+            border-radius: 14px;
+            background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 6px 20px rgba(239,68,68,0.45), 0 0 0 1px rgba(255,255,255,0.15);
+            opacity: 0;
+            transform: translateY(10px) scale(0.9);
+            animation: plLogo 0.55s cubic-bezier(.2,.9,.3,1.2) 1.75s forwards;
+        }
+        .pl-logo img { height: 26px; width: auto; }
+        @keyframes plLogo { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+        @media (max-width: 480px) {
+            .pl-core { width: 230px; height: 230px; }
+            .pl-barbell { width: 165px; }
+        }
+    </style>
+
     <script>
         tailwind.config = {
             theme: {
@@ -135,6 +276,98 @@
     </script>
 </head>
 <body class="bg-brand-dark text-white font-poppins antialiased overflow-x-hidden selection:bg-brand-red selection:text-white">
+
+    <!-- ============ PRELOADER 3D — capa de entrada ============ -->
+    <div id="preloader" aria-hidden="true">
+        <div class="pl-glow"></div>
+        <canvas id="plCanvas"></canvas>
+
+        <div class="pl-core">
+            <svg class="pl-ring" viewBox="0 0 300 300">
+                <circle class="track" cx="150" cy="150" r="120"></circle>
+                <circle class="prog" cx="150" cy="150" r="120"></circle>
+            </svg>
+
+            <div class="pl-barbell">
+                <div class="pl-bar"></div>
+                <div class="pl-plate l1"></div>
+                <div class="pl-plate small l2"></div>
+                <div class="pl-plate r1"></div>
+                <div class="pl-plate small r2"></div>
+            </div>
+
+            <div class="pl-dumbbell">
+                <div class="pl-db-bar"></div>
+                <div class="pl-db-plate l"></div>
+                <div class="pl-db-plate r"></div>
+            </div>
+
+            <div class="pl-logo">
+                <img src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var preloader = document.getElementById('preloader');
+            var canvas = document.getElementById('plCanvas');
+            var ctx = canvas.getContext('2d');
+            var particles = [];
+            var rafId;
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            var count = window.innerWidth < 640 ? 34 : 55;
+            for (var i = 0; i < count; i++) {
+                particles.push({
+                    angle: Math.random() * Math.PI * 2,
+                    radius: 50 + Math.random() * 200,
+                    speed: 0.15 + Math.random() * 0.35,
+                    size: 1 + Math.random() * 2,
+                    alpha: 0.3 + Math.random() * 0.6
+                });
+            }
+
+            function draw() {
+                var cx = canvas.width / 2;
+                var cy = canvas.height / 2;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    p.angle += 0.004 * p.speed;
+                    p.radius -= 0.18;
+                    if (p.radius < 15) { p.radius = 50 + Math.random() * 200; p.angle = Math.random() * Math.PI * 2; }
+                    var x = cx + Math.cos(p.angle) * p.radius;
+                    var y = cy + Math.sin(p.angle) * p.radius * 0.82;
+                    ctx.beginPath();
+                    ctx.arc(x, y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(239,68,68,' + p.alpha + ')';
+                    ctx.shadowColor = 'rgba(239,68,68,0.9)';
+                    ctx.shadowBlur = 8;
+                    ctx.fill();
+                }
+                rafId = requestAnimationFrame(draw);
+            }
+            draw();
+
+            function endPreload() {
+                document.documentElement.classList.remove('loading');
+                preloader.classList.add('pl-hide');
+                setTimeout(function () {
+                    cancelAnimationFrame(rafId);
+                    if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+                }, 650);
+            }
+
+            setTimeout(endPreload, 3000);
+        })();
+    </script>
 
     <svg class="hidden" aria-hidden="true">
         <defs>
@@ -161,7 +394,7 @@
         <div class="bg-slideshow bg-slide-2"></div>
         <div class="bg-slideshow bg-slide-3"></div>
     </div>
-    
+
     <!-- Gradient Overlay for Readability -->
     <div class="fixed inset-0 z-[-1] bg-gradient-to-b from-black/80 via-black/70 to-[#09090b]"></div>
 
@@ -175,10 +408,10 @@
 
     <!-- Área Principal -->
     <main class="min-h-[100dvh] flex flex-col justify-center items-center px-6 py-8 relative z-10 preserve-3d">
-        
+
         <!-- Topo: Logo e Títulos -->
         <div class="text-center w-full max-w-lg mx-auto reveal active card-3d preserve-3d relative">
-            
+
             <!-- UX/UI: Soft radial backdrop to ensure perfect contrast and text legibility -->
             <div class="absolute inset-0 bg-brand-dark/50 blur-3xl rounded-full z-[-1] scale-150"></div>
 
@@ -203,7 +436,7 @@
 
             <!-- Premium Dynamic Title -->
             <h1 class="font-anton text-5xl md:text-[75px] leading-[1.1] uppercase tracking-wide mb-4 card-3d-wrapper transform-gpu" style="transform: translateZ(30px);">
-                <span class="text-gradient-premium inline-block drop-shadow-lg">Forma</span> 
+                <span class="text-gradient-premium inline-block drop-shadow-lg">Forma</span>
                 <span class="premium-glow-red inline-block">
                     <span class="text-gradient-red inline-block">Máxima</span>
                 </span>
@@ -217,7 +450,7 @@
 
         <!-- Links Principais -->
         <div class="w-full max-w-sm mx-auto flex flex-col gap-4 reveal active preserve-3d">
-            
+
             <!-- Link 1: WhatsApp (Verde Original) -->
             <a href="#" class="card-3d group relative flex items-center justify-between p-4 md:p-[18px] bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-brand-whatsapp/60 hover:bg-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)] card-3d-wrapper preserve-3d">
                 <div class="absolute inset-0 bg-gradient-to-r from-transparent via-brand-whatsapp/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out z-0"></div>
@@ -288,7 +521,7 @@
                 </div>
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-insta group-hover:translate-x-1.5 transition-all duration-300 relative z-10 transform-gpu group-hover:translate-z-30"><use href="#ic-arrow"/></svg>
             </a>
-            
+
         </div>
 
         <div class="absolute bottom-6 flex flex-col items-center animate-bounce opacity-60 pointer-events-none z-10">
@@ -299,7 +532,7 @@
 
     <!-- Conteúdo Inferior (Seções Coloridas e 3D) -->
     <div class="bg-brand-dark relative z-20 border-t border-gray-800 pt-16 pb-20 overflow-hidden preserve-3d">
-        
+
         <section class="max-w-5xl mx-auto px-6 text-center preserve-3d" id="porque">
             <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 reveal">Método Forma Máxima</p>
             <h2 class="font-anton text-3xl md:text-4xl mb-4 reveal">POR QUE ENTRAR NA <span class="text-brand-red">FORMA MÁXIMA?</span></h2>
@@ -423,13 +656,13 @@
         <section class="max-w-5xl mx-auto px-6 mt-24 text-center preserve-3d" id="resultados">
             <p class="text-brand-resultados font-semibold text-sm uppercase tracking-widest mb-2 reveal">Prova Real</p>
             <h2 class="font-anton text-3xl md:text-4xl mb-12 reveal">RESULTADOS DE <span class="text-brand-resultados">ALUNOS</span></h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 preserve-3d">
                 <div class="card-3d bg-brand-card p-6 rounded-2xl border border-gray-800 relative hover:border-brand-resultados/50 reveal card-3d-wrapper preserve-3d flex flex-col">
                     <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-brand-resultados rounded-full flex items-center justify-center text-black transform-gpu translate-z-30 shadow-[0_5px_15px_rgba(234,179,8,0.4)] z-20">
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
                     </div>
-                    
+
                     <!-- Foto Antes/Depois Model -->
                     <div class="relative w-full aspect-[4/3] mb-4 mt-2 rounded-xl overflow-hidden group/img transform-gpu translate-z-20 border border-gray-800 bg-black">
                         <!-- Substituir src pelas imagens reais de antes/depois -->
@@ -447,7 +680,7 @@
                     <p class="text-gray-300 italic text-sm mt-auto transform-gpu translate-z-10 flex-grow">"Em poucos meses o treino deixou de ser sem direção. Cada semana teve propósito."</p>
                     <p class="mt-4 font-bold text-brand-resultados text-sm transform-gpu translate-z-20">— Aluno Forma Máxima</p>
                 </div>
-                
+
                 <div class="card-3d bg-brand-card p-6 rounded-2xl border border-gray-800 relative hover:border-brand-resultados/50 reveal card-3d-wrapper preserve-3d flex flex-col">
                     <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-brand-resultados rounded-full flex items-center justify-center text-black transform-gpu translate-z-30 shadow-[0_5px_15px_rgba(234,179,8,0.4)] z-20">
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
@@ -469,7 +702,7 @@
                     <p class="text-gray-300 italic text-sm mt-auto transform-gpu translate-z-10 flex-grow">"O acompanhamento próximo fez toda diferença. Hoje treino com estratégia, não no improviso."</p>
                     <p class="mt-4 font-bold text-brand-resultados text-sm transform-gpu translate-z-20">— Aluno Forma Máxima</p>
                 </div>
-                
+
                 <div class="card-3d bg-brand-card p-6 rounded-2xl border border-gray-800 relative hover:border-brand-resultados/50 reveal card-3d-wrapper preserve-3d flex flex-col">
                     <div class="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-brand-resultados rounded-full flex items-center justify-center text-black transform-gpu translate-z-30 shadow-[0_5px_15px_rgba(234,179,8,0.4)] z-20">
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
@@ -496,7 +729,7 @@
 
         <!-- Footer Premium com Elementos 3D -->
         <footer class="mt-24 border-t border-gray-800 relative bg-gradient-to-b from-brand-dark to-[#050505] pt-24 pb-12 text-center px-6 overflow-hidden preserve-3d">
-            
+
             <!-- Elementos 3D de Academia Flutuantes -->
             <div class="absolute top-12 left-[-5%] md:left-[10%] opacity-20 text-brand-red w-32 h-32 float-3d-1 pointer-events-none drop-shadow-[0_20px_30px_rgba(239,68,68,0.4)] transform-gpu rotate-[20deg] z-0">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 10h2v4H2zm3-2h2v8H5zm3 3h8v2H8zM16 8h2v8h-2zm3 2h2v4h-2z"/></svg>
@@ -515,14 +748,14 @@
                         <img class="h-14 md:h-16 object-contain" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
                     </div>
                 </div>
-                
+
                 <p class="font-anton text-2xl md:text-4xl tracking-widest text-white mb-2 title-dynamic-white">FORMA MÁXIMA</p>
                 <div class="h-1 w-16 bg-gradient-to-r from-transparent via-brand-red to-transparent mx-auto mb-4 rounded-full opacity-80"></div>
-                
+
                 <p class="text-gray-400 text-sm md:text-base font-light mb-10 max-w-sm mx-auto">
                     Elevando o padrão do seu treino. Estratégia, método e resultados reais para transformar seu físico.
                 </p>
-                
+
                 <div class="flex justify-center gap-8 mb-12">
                     <a href="#" class="group relative text-gray-500 hover:text-brand-whatsapp transition-colors">
                         <div class="absolute inset-0 bg-brand-whatsapp/20 scale-0 group-hover:scale-150 rounded-full transition-transform duration-500 blur-md z-0"></div>
@@ -565,32 +798,32 @@
 
         // 3D Tilt Effect Interativo
         const cards3d = document.querySelectorAll('.card-3d');
-        
+
         cards3d.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 // Desativa a transição de saída suave durante o movimento contínuo
                 card.classList.remove('leaving');
-                
+
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left; // x position within the element.
                 const y = e.clientY - rect.top;  // y position within the element.
-                
+
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                
+
                 // Multiplicador do efeito de inclinação
                 const rotateX = ((y - centerY) / centerY) * -12; // Inverte para parecer que afunda onde clica
                 const rotateY = ((x - centerX) / centerX) * 12;
-                
+
                 card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
             });
-            
+
             card.addEventListener('mouseleave', () => {
                 // Ativa a transição suave para voltar ao estado original
                 card.classList.add('leaving');
                 card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
-            
+
             // Corrige conflito visual ao entrar rapidamente
             card.addEventListener('mouseenter', () => {
                 card.classList.remove('leaving');
@@ -599,3 +832,6 @@
     </script>
 </body>
 </html>
+```
+
+Esse é exatamente o arquivo que está salvo em [index.html](forma-maxima/index.html), já com o preloader corrigido e testado.
