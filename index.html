@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Forma Máxima | Consultoria de Musculação</title>
+<meta name="description" content="Consultoria de musculação para quem quer evoluir com método, intensidade e resultado. Treino personalizado, acompanhamento e estratégia para hipertrofia.">
+<link rel="icon" type="image/png" href="https://i.imgur.com/QVdz5Ni.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg class="sprite" aria-hidden="true" style="display:none">
+  <defs>
+    <symbol id="ic-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z" fill="currentColor"/></symbol>
+    <symbol id="ic-whatsapp" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.7.8-.8 1-.2.2-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.6-1.2-1.4-1.4-1.6-.2-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.2-.5.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 2 3 4.7 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.5-.3z" fill="currentColor"/></symbol>
+    <symbol id="ic-users" viewBox="0 0 24 24"><path d="M17 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm-9 0a3.5 3.5 0 1 0-3.5-3.5A3.5 3.5 0 0 0 8 11zm9 2c-2.7 0-8 1.3-8 4v3h16v-3c0-2.7-5.3-4-8-4zm-9 0c-.4 0-.9 0-1.4.1C4.9 13.6 2 15 2 17v3h5v-3c0-1.4.6-2.6 1.6-3.6C8.2 13 8.5 13 8 13z" fill="currentColor"/></symbol>
+    <symbol id="ic-dumbbell" viewBox="0 0 24 24"><path d="M2 10h2v4H2zm3-2h2v8H5zm3 3h8v2H8zM16 8h2v8h-2zm3 2h2v4h-2z" fill="currentColor"/></symbol>
+    <symbol id="ic-tag" viewBox="0 0 24 24"><path d="M20.6 11.3 12.7 3.4A2 2 0 0 0 11.3 3H4a1 1 0 0 0-1 1v7.3a2 2 0 0 0 .6 1.4l7.9 7.9a2 2 0 0 0 2.8 0l6.3-6.3a2 2 0 0 0 0-2.8zM7 9a2 2 0 1 1 2-2 2 2 0 0 1-2 2z" fill="currentColor"/></symbol>
+    <symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M18 3h-2V2H8v1H6a1 1 0 0 0-1 1v3a4 4 0 0 0 4 4c.3 1.4 1.4 2.5 3 2.9V17H9v2h6v-2h-3v-3.1c1.6-.4 2.7-1.5 3-2.9a4 4 0 0 0 4-4V4a1 1 0 0 0-1-1zM5 7V5h1v3a2.5 2.5 0 0 1-1-1.5V7zm14 0a2.5 2.5 0 0 1-1 1.5V5h1v2z" fill="currentColor"/></symbol>
+    <symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z" fill="currentColor"/></symbol>
+    <symbol id="ic-insta" viewBox="0 0 24 24"><path d="M12 2c-2.7 0-3.1 0-4.1.1a5.9 5.9 0 0 0-4.7 4.7C3.1 7.9 3 8.3 3 11v2c0 2.7 0 3.1.1 4.1a5.9 5.9 0 0 0 4.7 4.7c1 .1 1.4.1 4.1.1s3.1 0 4.1-.1a5.9 5.9 0 0 0 4.7-4.7c.1-1 .1-1.4.1-4.1v-2c0-2.7 0-3.1-.1-4.1a5.9 5.9 0 0 0-4.7-4.7C15.1 2.1 14.7 2 12 2zm0 4.9A5.1 5.1 0 1 1 6.9 12 5.1 5.1 0 0 1 12 6.9zm0 2A3.1 3.1 0 1 0 15.1 12 3.1 3.1 0 0 0 12 8.9zm5.3-2.9a1.2 1.2 0 1 1-1.2-1.2 1.2 1.2 0 0 1 1.2 1.2z" fill="currentColor"/></symbol>
+    <symbol id="ic-help" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm.1 17h-1.9v-1.9h1.9zm2-7.6c-.5.6-1 .9-1.2 1.6a2.9 2.9 0 0 0-.1 1h-1.7v-.3a3.4 3.4 0 0 1 .3-1.6 4.6 4.6 0 0 1 1-1.2c.4-.4.9-.8.9-1.5a1.3 1.3 0 0 0-1.4-1.3 1.5 1.5 0 0 0-1.5 1.3l-1.8-.2A3.2 3.2 0 0 1 12.2 6a3.1 3.1 0 0 1 3.2 3.1c0 1-.6 1.6-1.3 2.3z" fill="currentColor"/></symbol>
+    <symbol id="ic-clipboard" viewBox="0 0 24 24"><path d="M9 2a1 1 0 0 0-1 1v1H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V3a1 1 0 0 0-1-1zm-2 9 2 2 4-4 1.4 1.4-5.4 5.4L5.6 12.4z" fill="currentColor"/></symbol>
+    <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M13.1 2.3c-3 1-5.6 3.7-6.7 6.8L4 10.5l-2 4.8 4.8-2 1.4-2.4c3.1-1.1 5.8-3.7 6.8-6.7l1.7-1.7zM9.4 15.3a2.6 2.6 0 0 1-3.7-3.7l1-1a4.6 4.6 0 0 0 3.7 3.7zm5.9-6.6a2 2 0 1 1 2-2 2 2 0 0 1-2 2z" fill="currentColor"/></symbol>
+    <symbol id="ic-target" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 16a6 6 0 1 1 6-6 6 6 0 0 1-6 6zm0-9.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5z" fill="currentColor"/></symbol>
+    <symbol id="ic-repeat" viewBox="0 0 24 24"><path d="M17 2 21 6 17 10V7a5 5 0 0 0-5 5H10a7 7 0 0 1 7-7zm-10 12L3 18l4 4v-3a5 5 0 0 0 5-5h2a7 7 0 0 1-7 7z" fill="currentColor"/></symbol>
+    <symbol id="ic-chart" viewBox="0 0 24 24"><path d="M4 20V10h3v10zm6.5 0V4h3v16zM17 20v-7h3v7z" fill="currentColor"/></symbol>
+    <symbol id="ic-flame" viewBox="0 0 24 24"><path d="M12 2s-5 4.5-5 9.5A5 5 0 0 0 12 22a5 5 0 0 0 5-10.5c-.5 1.5-1.5 2.5-2 2 1-3-1-5-1.5-6.5-.5 1.5-2 2.5-2 5-1-.5-1.5-3-1.5-5.5A11 11 0 0 1 12 2z" fill="currentColor"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z" fill="currentColor"/></symbol>
+    <symbol id="ic-quote" viewBox="0 0 24 24"><path d="M9 6a5 5 0 0 0-5 5v7h7v-7H6a3 3 0 0 1 3-3zm10 0a5 5 0 0 0-5 5v7h7v-7h-5a3 3 0 0 1 3-3z" fill="currentColor"/></symbol>
+    <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="M5 12h13m-6-7 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ BACKGROUND LAYERS ============ -->
+<canvas id="particles"></canvas>
+<div class="noise-overlay"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+
+  <div class="float-layer" id="floatLayer">
+    <div class="float-shape shape-1"><svg><use href="#ic-dumbbell"/></svg></div>
+    <div class="float-shape shape-2"><svg><use href="#ic-zap"/></svg></div>
+    <div class="float-shape shape-3"><svg><use href="#ic-flame"/></svg></div>
+    <div class="float-shape shape-4"><svg><use href="#ic-target"/></svg></div>
+    <div class="float-shape shape-5"><svg><use href="#ic-dumbbell"/></svg></div>
+  </div>
+
+  <div class="hero-content reveal">
+    <img class="brand-logo" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
+
+    <div class="avatar-wrap">
+      <div class="avatar-ring">
+        <div class="avatar-photo">
+          <!-- Substitua o src abaixo pela foto do treinador -->
+          <img src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima - Treinador">
+        </div>
+      </div>
+      <span class="avatar-badge"><svg><use href="#ic-check"/></svg> Consultoria Ativa</span>
+    </div>
+
+    <h1 class="brand-title">FORMA <span>MÁXIMA</span></h1>
+
+    <p class="hero-tag">Transforme seu físico com treino, estratégia e acompanhamento de verdade.</p>
+    <p class="hero-subtag">Consultoria de musculação para quem quer evoluir com método, intensidade e resultado.</p>
+
+    <a href="#planos" class="btn-primary pulse" data-link="cta-principal">
+      <svg><use href="#ic-zap"/></svg>
+      <span>Conhecer a Consultoria</span>
+    </a>
+
+    <div class="scroll-cue">
+      <span>Deslize</span>
+      <svg><use href="#ic-arrow" style="transform:rotate(90deg)"/></svg>
+    </div>
+  </div>
+</header>
+
+<!-- ============ LINKS PRINCIPAIS ============ -->
+<main>
+<section class="links-section" aria-label="Links rápidos">
+  <div class="section-inner">
+
+    <a href="#" id="link-whatsapp" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-whatsapp"/></svg></span>
+      <span class="btn-text">Conversar no WhatsApp</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#" id="link-grupo" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-users"/></svg></span>
+      <span class="btn-text">Entrar no Grupo</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#" id="link-gymrats" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-dumbbell"/></svg></span>
+      <span class="btn-text">Gymrats</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#planos" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-tag"/></svg></span>
+      <span class="btn-text">Planos e Valores</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#resultados" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-trophy"/></svg></span>
+      <span class="btn-text">Resultados de Alunos</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#" id="link-local" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-pin"/></svg></span>
+      <span class="btn-text">Localização</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#" id="link-insta" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-insta"/></svg></span>
+      <span class="btn-text">Instagram</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#faq" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-help"/></svg></span>
+      <span class="btn-text">Perguntas Frequentes</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#" id="link-avaliacao" class="btn-secondary reveal">
+      <span class="btn-icon"><svg><use href="#ic-clipboard"/></svg></span>
+      <span class="btn-text">Avaliação Física</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+    <a href="#" id="link-comecar" class="btn-secondary featured reveal">
+      <span class="btn-icon"><svg><use href="#ic-rocket"/></svg></span>
+      <span class="btn-text">Começar Agora</span>
+      <svg class="btn-arrow"><use href="#ic-arrow"/></svg>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============ FRASE DE IMPACTO ============ -->
+<section class="impact-strip reveal">
+  <p>Pare de treinar no <span>improviso.</span></p>
+</section>
+
+<!-- ============ POR QUE ENTRAR ============ -->
+<section class="why-section" id="porque">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Método Forma Máxima</p>
+    <h2 class="section-title reveal">Por que entrar na <span>Forma Máxima?</span></h2>
+    <p class="section-desc reveal">Tenha um plano feito para o seu objetivo. Evolua com estratégia, não com achismo.</p>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg><use href="#ic-target"/></svg></div>
+        <h3>Treino personalizado</h3>
+        <p>Programação feita sob medida para o seu corpo, seu objetivo e sua rotina.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg><use href="#ic-chart"/></svg></div>
+        <h3>Estratégia para hipertrofia</h3>
+        <p>Progressão de carga, volume e intensidade planejados para gerar resultado real.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg><use href="#ic-users"/></svg></div>
+        <h3>Acompanhamento contínuo</h3>
+        <p>Você nunca treina sozinho. Suporte próximo em cada etapa da sua evolução.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg><use href="#ic-repeat"/></svg></div>
+        <h3>Ajustes conforme evolução</h3>
+        <p>Seu treino muda conforme seu corpo muda. Nada de plano engessado.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg><use href="#ic-flame"/></svg></div>
+        <h3>Disciplina e constância</h3>
+        <p>Método pensado para manter você firme mesmo nos dias difíceis.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg><use href="#ic-dumbbell"/></svg></div>
+        <h3>Naturais e iniciantes</h3>
+        <p>Método construído para quem treina natural, do zero ao intermediário.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRASE DE IMPACTO 2 ============ -->
+<section class="impact-strip alt reveal">
+  <p>Seu físico precisa de <span>método.</span></p>
+</section>
+
+<!-- ============ PLANOS ============ -->
+<section class="plans-section" id="planos">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Invista em você</p>
+    <h2 class="section-title reveal">Planos e <span>Valores</span></h2>
+    <p class="section-desc reveal">Escolha o nível de acompanhamento ideal para a sua fase de evolução.</p>
+
+    <div class="plans-grid">
+      <div class="plan-card reveal">
+        <h3 class="plan-name">Start</h3>
+        <p class="plan-tagline">Ideal para quem está começando</p>
+        <ul class="plan-features">
+          <li><svg><use href="#ic-check"/></svg> Treino personalizado</li>
+          <li><svg><use href="#ic-check"/></svg> Orientação inicial</li>
+          <li><svg><use href="#ic-check"/></svg> Suporte básico</li>
+        </ul>
+        <a href="#" class="plan-cta" data-plan="start">Quero esse plano</a>
+      </div>
+
+      <div class="plan-card highlighted reveal">
+        <span class="plan-flag">Mais escolhido</span>
+        <h3 class="plan-name">Evolução</h3>
+        <p class="plan-tagline">Para quem quer evoluir com consistência</p>
+        <ul class="plan-features">
+          <li><svg><use href="#ic-check"/></svg> Treino personalizado</li>
+          <li><svg><use href="#ic-check"/></svg> Ajustes mensais</li>
+          <li><svg><use href="#ic-check"/></svg> Suporte via WhatsApp</li>
+          <li><svg><use href="#ic-check"/></svg> Acompanhamento de progresso</li>
+        </ul>
+        <a href="#" class="plan-cta" data-plan="evolucao">Quero esse plano</a>
+      </div>
+
+      <div class="plan-card reveal">
+        <h3 class="plan-name">Forma Máxima</h3>
+        <p class="plan-tagline">Para quem quer resultado máximo</p>
+        <ul class="plan-features">
+          <li><svg><use href="#ic-check"/></svg> Treino personalizado completo</li>
+          <li><svg><use href="#ic-check"/></svg> Acompanhamento próximo</li>
+          <li><svg><use href="#ic-check"/></svg> Ajustes estratégicos</li>
+          <li><svg><use href="#ic-check"/></svg> Análise de evolução</li>
+          <li><svg><use href="#ic-check"/></svg> Suporte prioritário</li>
+        </ul>
+        <a href="#" class="plan-cta" data-plan="forma-maxima">Quero esse plano</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRASE DE IMPACTO 3 ============ -->
+<section class="impact-strip reveal">
+  <p>A Forma Máxima é para quem <span>decidiu levar o treino a sério.</span></p>
+</section>
+
+<!-- ============ RESULTADOS / PROVA SOCIAL ============ -->
+<section class="proof-section" id="resultados">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Prova real</p>
+    <h2 class="section-title reveal">Resultados de <span>Alunos</span></h2>
+    <p class="section-desc reveal">“Resultados reais vêm de consistência, método e acompanhamento.”</p>
+
+    <div class="proof-grid">
+      <div class="proof-card reveal">
+        <div class="proof-photo ph-1">Antes / Depois</div>
+        <svg class="quote-mark"><use href="#ic-quote"/></svg>
+        <p>"Em poucos meses o treino deixou de ser sem direção. Cada semana teve propósito."</p>
+        <span class="proof-name">— Aluno Forma Máxima</span>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-photo ph-2">Antes / Depois</div>
+        <svg class="quote-mark"><use href="#ic-quote"/></svg>
+        <p>"O acompanhamento próximo fez toda diferença. Hoje treino com estratégia, não no improviso."</p>
+        <span class="proof-name">— Aluno Forma Máxima</span>
+      </div>
+      <div class="proof-card reveal">
+        <div class="proof-photo ph-3">Antes / Depois</div>
+        <svg class="quote-mark"><use href="#ic-quote"/></svg>
+        <p>"Método sério para quem quer evoluir de verdade. Os ajustes mensais mudaram meu shape."</p>
+        <span class="proof-name">— Aluno Forma Máxima</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-section" id="faq">
+  <div class="section-inner">
+    <p class="eyebrow reveal">Tire suas dúvidas</p>
+    <h2 class="section-title reveal">Perguntas <span>Frequentes</span></h2>
+
+    <div class="faq-list">
+      <details class="faq-item reveal" open>
+        <summary>Preciso já ter experiência para começar?</summary>
+        <p>Não. O método Forma Máxima é construído para naturais, iniciantes e intermediários que querem evoluir com direção.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Como funciona o acompanhamento?</summary>
+        <p>Você recebe seu treino personalizado, com ajustes periódicos e suporte direto via WhatsApp conforme o plano escolhido.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Treino online funciona mesmo?</summary>
+        <p>Sim. Com estratégia, progressão de carga e acompanhamento constante, o resultado vem independente da distância.</p>
+      </details>
+      <details class="faq-item reveal">
+        <summary>Qual plano é o ideal para mim?</summary>
+        <p>Fale com a equipe pelo WhatsApp para uma avaliação rápida e receba a recomendação certa para o seu objetivo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final-cta reveal">
+  <div class="section-inner">
+    <h2>Evolua com estratégia,<br>não com <span>achismo.</span></h2>
+    <a href="#" id="link-cta-final" class="btn-primary pulse">
+      <svg><use href="#ic-zap"/></svg>
+      <span>Começar Agora</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <img class="footer-logo" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
+    <p class="footer-name">FORMA MÁXIMA</p>
+    <p class="footer-tag">Treino inteligente. Evolução real.</p>
+
+    <div class="footer-links">
+      <a href="#" id="footer-whatsapp"><svg><use href="#ic-whatsapp"/></svg> WhatsApp</a>
+      <a href="#" id="footer-insta"><svg><use href="#ic-insta"/></svg> Instagram</a>
+      <a href="#" id="footer-local"><svg><use href="#ic-pin"/></svg> Localização</a>
+    </div>
+
+    <p class="footer-copy">© <span id="year"></span> Forma Máxima. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
