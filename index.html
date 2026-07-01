@@ -1,3 +1,6 @@
+Aqui está o código completo e atualizado do `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth loading">
 <head>
@@ -132,12 +135,13 @@
         .pl-glow {
             position: absolute;
             width: 130%; height: 130%;
-            background: radial-gradient(circle at 50% 50%, rgba(239,68,68,0.32), transparent 62%);
             filter: blur(50px);
-            animation: plGlow 2.2s ease-in-out infinite;
+            animation: plGlowPulse 3.2s ease-in-out infinite;
         }
-        @keyframes plGlow {
-            0%, 100% { opacity: 0.55; transform: scale(1); }
+        .pl-glow-red   { background: radial-gradient(circle at 50% 50%, rgba(239,68,68,0.34), transparent 62%); }
+        .pl-glow-white { background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.24), transparent 62%); animation-delay: -1.6s; }
+        @keyframes plGlowPulse {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.1); }
         }
 
@@ -167,85 +171,39 @@
             transform: rotate(-90deg);
             stroke-dasharray: 754;
             stroke-dashoffset: 754;
-            animation: plRing 2.4s cubic-bezier(.3,0,.2,1) 0.2s forwards;
+            animation: plRing 2.4s cubic-bezier(.3,0,.2,1) 0.2s forwards,
+                       plRingColor 1.8s ease-in-out 2.4s infinite;
         }
         @keyframes plRing { to { stroke-dashoffset: 60; } }
-
-        .pl-barbell { position: relative; width: 210px; height: 10px; }
-        .pl-bar {
-            position: absolute;
-            inset: 0; margin: auto;
-            width: 100%; height: 7px; top: 1.5px;
-            background: linear-gradient(180deg,#6a6a6a,#171717 60%,#000);
-            border-radius: 6px;
-            box-shadow: 0 0 10px rgba(255,255,255,0.15);
-            transform: scaleX(0);
-            animation: plBar 0.5s ease 0.15s forwards;
-        }
-        @keyframes plBar { to { transform: scaleX(1); } }
-
-        .pl-plate {
-            position: absolute;
-            top: 50%;
-            width: 50px; height: 50px;
-            margin-top: -25px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 35% 30%, #303030, #0a0a0a 70%);
-            border: 3px solid #ef4444;
-            box-shadow: 0 0 16px rgba(239,68,68,0.55), inset 0 0 10px rgba(0,0,0,0.85);
-            opacity: 0;
-        }
-        .pl-plate.small { width: 34px; height: 34px; margin-top: -17px; }
-        .pl-plate.l1 { left: -6px;   animation: plPlateL 0.55s cubic-bezier(.2,.8,.3,1.25) 0.7s forwards; }
-        .pl-plate.l2 { left: -22px;  animation: plPlateL 0.55s cubic-bezier(.2,.8,.3,1.25) 0.88s forwards; }
-        .pl-plate.r1 { right: -6px;  animation: plPlateR 0.55s cubic-bezier(.2,.8,.3,1.25) 0.7s forwards; }
-        .pl-plate.r2 { right: -22px; animation: plPlateR 0.55s cubic-bezier(.2,.8,.3,1.25) 0.88s forwards; }
-        @keyframes plPlateL {
-            0%   { opacity: 0; transform: translateX(-110px) scale(0.5); }
-            70%  { opacity: 1; transform: translateX(4px) scale(1.06); }
-            100% { opacity: 1; transform: translateX(0) scale(1); }
-        }
-        @keyframes plPlateR {
-            0%   { opacity: 0; transform: translateX(110px) scale(0.5); }
-            70%  { opacity: 1; transform: translateX(-4px) scale(1.06); }
-            100% { opacity: 1; transform: translateX(0) scale(1); }
+        @keyframes plRingColor {
+            0%, 100% { stroke: #ef4444; filter: drop-shadow(0 0 6px rgba(239,68,68,0.85)); }
+            50%      { stroke: #ffffff; filter: drop-shadow(0 0 8px rgba(255,255,255,0.9)); }
         }
 
         .pl-dumbbell {
             position: absolute;
-            bottom: 16%; right: 14%;
-            width: 58px; height: 16px;
+            top: 50%; left: 50%;
+            width: 200px; height: auto;
             opacity: 0;
-            animation: plDbIn 0.6s ease 1.25s forwards, plDbFloat 2.4s ease-in-out 1.85s infinite;
+            filter: drop-shadow(0 10px 26px rgba(239,68,68,0.55));
+            animation: plDbIn 0.6s ease 0.3s forwards,
+                       plDbFloat 3.2s ease-in-out infinite,
+                       plDbGlow 1.8s ease-in-out 2.4s infinite;
         }
-        @keyframes plDbIn { to { opacity: 0.9; } }
+        .pl-dumbbell img { display: block; width: 100%; height: auto; }
+        @keyframes plDbIn { to { opacity: 1; } }
         @keyframes plDbFloat {
-            0%, 100% { transform: translateY(0) rotate(-6deg); }
-            50%      { transform: translateY(-6px) rotate(4deg); }
+            0%, 100%  { transform: translate(-50%, -50%) translateY(0) rotate(-5deg); }
+            50%       { transform: translate(-50%, -50%) translateY(-14px) rotate(5deg); }
         }
-        .pl-db-bar { position: absolute; left: 13px; right: 13px; top: 6px; height: 4px; background: #444; border-radius: 4px; }
-        .pl-db-plate { position: absolute; top: 0; width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #303030, #0a0a0a 70%); border: 2px solid #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.5); }
-        .pl-db-plate.l { left: 0; }
-        .pl-db-plate.r { right: 0; }
-
-        .pl-logo {
-            position: absolute;
-            bottom: -70px;
-            width: 46px; height: 46px;
-            border-radius: 14px;
-            background: #fff;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 6px 20px rgba(239,68,68,0.45), 0 0 0 1px rgba(255,255,255,0.15);
-            opacity: 0;
-            transform: translateY(10px) scale(0.9);
-            animation: plLogo 0.55s cubic-bezier(.2,.9,.3,1.2) 1.75s forwards;
+        @keyframes plDbGlow {
+            0%, 100% { filter: drop-shadow(0 10px 26px rgba(239,68,68,0.55)); }
+            50%      { filter: drop-shadow(0 10px 30px rgba(255,255,255,0.5)); }
         }
-        .pl-logo img { height: 26px; width: auto; }
-        @keyframes plLogo { to { opacity: 1; transform: translateY(0) scale(1); } }
 
         @media (max-width: 480px) {
             .pl-core { width: 230px; height: 230px; }
-            .pl-barbell { width: 165px; }
+            .pl-dumbbell { width: 140px; }
         }
     </style>
 
@@ -276,7 +234,8 @@
 
     <!-- ============ PRELOADER 3D — capa de entrada ============ -->
     <div id="preloader" aria-hidden="true">
-        <div class="pl-glow"></div>
+        <div class="pl-glow pl-glow-red"></div>
+        <div class="pl-glow pl-glow-white"></div>
         <canvas id="plCanvas"></canvas>
 
         <div class="pl-core">
@@ -285,22 +244,8 @@
                 <circle class="prog" cx="150" cy="150" r="120"></circle>
             </svg>
 
-            <div class="pl-barbell">
-                <div class="pl-bar"></div>
-                <div class="pl-plate l1"></div>
-                <div class="pl-plate small l2"></div>
-                <div class="pl-plate r1"></div>
-                <div class="pl-plate small r2"></div>
-            </div>
-
             <div class="pl-dumbbell">
-                <div class="pl-db-bar"></div>
-                <div class="pl-db-plate l"></div>
-                <div class="pl-db-plate r"></div>
-            </div>
-
-            <div class="pl-logo">
-                <img src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
+                <img src="https://i.imgur.com/SMI45eN.png" alt="Halter">
             </div>
         </div>
     </div>
@@ -334,6 +279,11 @@
             function draw() {
                 var cx = canvas.width / 2;
                 var cy = canvas.height / 2;
+                var mix = (Math.sin(Date.now() / 900) + 1) / 2;
+                var r = Math.round(239 + (255 - 239) * mix);
+                var g = Math.round(68 + (255 - 68) * mix);
+                var b = Math.round(68 + (255 - 68) * mix);
+                var shadow = 'rgba(' + r + ',' + g + ',' + b + ',0.9)';
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 for (var i = 0; i < particles.length; i++) {
                     var p = particles[i];
@@ -344,8 +294,8 @@
                     var y = cy + Math.sin(p.angle) * p.radius * 0.82;
                     ctx.beginPath();
                     ctx.arc(x, y, p.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(239,68,68,' + p.alpha + ')';
-                    ctx.shadowColor = 'rgba(239,68,68,0.9)';
+                    ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + p.alpha + ')';
+                    ctx.shadowColor = shadow;
                     ctx.shadowBlur = 8;
                     ctx.fill();
                 }
@@ -831,4 +781,4 @@
 </html>
 ```
 
-Esse é exatamente o arquivo que está salvo em [index.html](forma-maxima/index.html), já com o preloader corrigido e testado.
+Esse é o conteúdo exato salvo em [index.html](forma-maxima/index.html).
