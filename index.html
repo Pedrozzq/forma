@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Popsdpins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -105,6 +105,7 @@
             .card-3d-wrapper {
                 transition: transform 0.1s linear, box-shadow 0.3s ease, border-color 0.3s ease;
                 will-change: transform;
+                touch-action: manipulation;
             }
             .card-3d-wrapper.leaving {
                 transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
@@ -737,39 +738,46 @@
         window.addEventListener('scroll', revealOnScroll);
         revealOnScroll();
 
-        // 3D Tilt Effect Interativo
-        const cards3d = document.querySelectorAll('.card-3d');
+        // 3D Tilt Effect Interativo (somente em dispositivos com mouse real)
+        // Em touch, o "mousemove" sintético do navegador desloca o elemento
+        // bem no instante do toque e o clique pode não registrar — por isso
+        // o efeito fica restrito a ponteiros finos (mouse/trackpad).
+        const supportsHoverTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-        cards3d.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                // Desativa a transição de saída suave durante o movimento contínuo
-                card.classList.remove('leaving');
+        if (supportsHoverTilt) {
+            const cards3d = document.querySelectorAll('.card-3d');
 
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // x position within the element.
-                const y = e.clientY - rect.top;  // y position within the element.
+            cards3d.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    // Desativa a transição de saída suave durante o movimento contínuo
+                    card.classList.remove('leaving');
 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // x position within the element.
+                    const y = e.clientY - rect.top;  // y position within the element.
 
-                // Multiplicador do efeito de inclinação
-                const rotateX = ((y - centerY) / centerY) * -12; // Inverte para parecer que afunda onde clica
-                const rotateY = ((x - centerX) / centerX) * 12;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                    // Multiplicador do efeito de inclinação
+                    const rotateX = ((y - centerY) / centerY) * -12; // Inverte para parecer que afunda onde clica
+                    const rotateY = ((x - centerX) / centerX) * 12;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    // Ativa a transição suave para voltar ao estado original
+                    card.classList.add('leaving');
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+
+                // Corrige conflito visual ao entrar rapidamente
+                card.addEventListener('mouseenter', () => {
+                    card.classList.remove('leaving');
+                });
             });
-
-            card.addEventListener('mouseleave', () => {
-                // Ativa a transição suave para voltar ao estado original
-                card.classList.add('leaving');
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            });
-
-            // Corrige conflito visual ao entrar rapidamente
-            card.addEventListener('mouseenter', () => {
-                card.classList.remove('leaving');
-            });
-        });
+        }
     </script>
 </body>
 </html>
