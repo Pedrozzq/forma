@@ -117,74 +117,61 @@
         }
 
         /* --------------------------------------
-           PRELOADER TEMÁTICO - Halter fazendo repetições (musculação)
+           PRELOADER - Halter (anilha) em movimento + loading circular
         -------------------------------------- */
         #preloader {
             position: fixed; inset: 0; z-index: 9999;
-            background: radial-gradient(circle at 50% 42%, #101010 0%, #050505 70%);
+            background: radial-gradient(circle at 50% 45%, #101216 0%, #050506 70%);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 30px; overflow: hidden; transition: opacity 0.8s ease;
+            gap: 36px; overflow: hidden; transition: opacity 0.8s ease;
         }
-        .pl-stage {
-            position: relative;
-            display: flex; flex-direction: column; align-items: center; gap: 26px;
+        .pl2-ring {
+            position: relative; width: 230px; height: 230px;
+            display: flex; align-items: center; justify-content: center;
         }
-        /* Aura vermelha que "explode" no pico da contração */
-        .pl-glow {
-            position: absolute; top: 26px; left: 50%;
-            width: 210px; height: 210px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(239,68,68,0.55) 0%, transparent 62%);
-            filter: blur(6px); pointer-events: none; z-index: 0;
-            animation: plGlow 1.9s cubic-bezier(.5,0,.3,1) infinite;
+        /* aura vermelha suave */
+        .pl2-ring::before {
+            content: ''; position: absolute; inset: -16px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(239,68,68,0.22) 0%, transparent 62%);
+            filter: blur(6px); pointer-events: none;
         }
-        @keyframes plGlow {
-            0%,14%   { opacity: .10; transform: translate(-50%, 22px) scale(.6); }
-            50%,56%  { opacity: .95; transform: translate(-50%, -14px) scale(1.15); }
-            92%,100% { opacity: .10; transform: translate(-50%, 22px) scale(.6); }
+        /* trilho do loading */
+        .pl2-loader {
+            position: absolute; inset: 0; border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.07);
         }
-        .pl-barbell {
-            width: 230px; height: auto; overflow: visible;
+        /* arco vermelho girando */
+        .pl2-loader::after {
+            content: ''; position: absolute; inset: -3px; border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: #ef4444; border-right-color: #ef4444;
+            box-shadow: 0 0 14px rgba(239,68,68,0.5);
+            animation: pl2Spin 1s linear infinite;
+        }
+        @keyframes pl2Spin { to { transform: rotate(360deg); } }
+        /* imagem caindo do topo e parando no centro do círculo */
+        .pl2-db {
             position: relative; z-index: 1;
-            filter: drop-shadow(0 6px 14px rgba(0,0,0,0.6));
+            width: 128px; height: auto; display: block;
+            filter: drop-shadow(0 12px 20px rgba(0,0,0,0.5)) drop-shadow(0 0 16px rgba(239,68,68,0.35));
+            animation: pl2Drop 1.15s cubic-bezier(.3,.9,.4,1) forwards;
         }
-        /* Movimento de repetição: sobe (contrai/aperta) e desce (relaxa) */
-        .pl-barbell .bar-group {
-            transform-box: fill-box; transform-origin: center;
-            animation: plLift 1.9s cubic-bezier(.5,0,.3,1) infinite;
+        @keyframes pl2Drop {
+            0%   { transform: translateY(-380px) scale(.85) rotate(-6deg); opacity: 0; }
+            25%  { opacity: 1; }
+            65%  { transform: translateY(16px) scale(1.03) rotate(2deg); }   /* impacto ao cair */
+            82%  { transform: translateY(-7px) scale(.99) rotate(-1deg); }   /* quique */
+            100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; } /* parado no centro */
         }
-        @keyframes plLift {
-            0%,14%   { transform: translateY(24px) scaleX(1); }     /* embaixo, relaxado */
-            48%      { transform: translateY(-16px) scaleX(.95); }  /* subindo */
-            54%      { transform: translateY(-20px) scaleX(.93); }  /* pico: aperto/contração */
-            92%,100% { transform: translateY(24px) scaleX(1); }     /* volta */
+        .pl2-text {
+            max-width: 300px; text-align: center; color: #9ca3af;
+            font-family: 'Poppins', sans-serif; font-weight: 300; font-size: .95rem;
+            line-height: 1.5; letter-spacing: .02em;
+            animation: pl2Text 2.4s ease-in-out infinite;
         }
-        /* Linhas de esforço que aparecem no pico */
-        .pl-barbell .effort { opacity: 0; animation: plEffort 1.9s cubic-bezier(.5,0,.3,1) infinite; }
-        @keyframes plEffort {
-            0%,40%   { opacity: 0; }
-            50%,58%  { opacity: .9; }
-            70%,100% { opacity: 0; }
-        }
-        .pl-text {
-            font-family: 'Anton', sans-serif; text-transform: uppercase;
-            letter-spacing: .28em; font-size: .82rem; color: #d1d5db;
-            animation: plText 1.9s ease-in-out infinite; z-index: 1;
-        }
-        @keyframes plText { 0%,100% { opacity: .4 } 50% { opacity: 1 } }
-        .pl-track {
-            width: 200px; height: 3px; border-radius: 99px; overflow: hidden;
-            background: rgba(255,255,255,0.08); z-index: 1;
-        }
-        .pl-fill {
-            display: block; height: 100%; width: 45%; border-radius: 99px;
-            background: linear-gradient(90deg, #ef4444, #f97316);
-            box-shadow: 0 0 12px rgba(239,68,68,.6);
-            animation: plFill 1.9s cubic-bezier(.6,0,.4,1) infinite;
-        }
-        @keyframes plFill {
-            0%   { transform: translateX(-120%); }
-            100% { transform: translateX(360%); }
-        }
+        .pl2-text b { color: #fff; font-weight: 500; }
+        .pl2-text .r { color: #ef4444; font-weight: 500; }
+        @keyframes pl2Text { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
         .gsap-reveal { visibility: hidden; } /* Previne flash antes do GSAP agir */
 
         /* --------------------------------------
@@ -216,34 +203,13 @@
 </head>
 <body class="bg-brand-dark text-white font-poppins antialiased overflow-x-hidden selection:bg-brand-red selection:text-white">
 
-    <!-- Preloader Temático (Halter fazendo repetições) -->
+    <!-- Preloader (Halter em movimento + loading circular) -->
     <div id="preloader">
-        <div class="pl-stage">
-            <div class="pl-glow"></div>
-            <svg class="pl-barbell" viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
-                <g class="bar-group">
-                    <!-- linhas de esforço (aparecem no pico da contração) -->
-                    <g class="effort" stroke="#ef4444" stroke-width="3" stroke-linecap="round">
-                        <line x1="120" y1="18" x2="120" y2="6"/>
-                        <line x1="96"  y1="22" x2="90"  y2="11"/>
-                        <line x1="144" y1="22" x2="150" y2="11"/>
-                    </g>
-                    <!-- barra central -->
-                    <rect x="46" y="53" width="148" height="14" rx="7" fill="#ffffff"/>
-                    <!-- presilhas -->
-                    <rect x="58"  y="46" width="9" height="28" rx="3" fill="#ef4444"/>
-                    <rect x="173" y="46" width="9" height="28" rx="3" fill="#ef4444"/>
-                    <!-- anilhas esquerda -->
-                    <rect x="32" y="28" width="16" height="64" rx="7" fill="#ffffff"/>
-                    <rect x="18" y="38" width="12" height="44" rx="6" fill="#9ca3af"/>
-                    <!-- anilhas direita -->
-                    <rect x="192" y="28" width="16" height="64" rx="7" fill="#ffffff"/>
-                    <rect x="210" y="38" width="12" height="44" rx="6" fill="#9ca3af"/>
-                </g>
-            </svg>
-            <div class="pl-text">Preparando seu treino</div>
-            <div class="pl-track"><span class="pl-fill"></span></div>
+        <div class="pl2-ring">
+            <div class="pl2-loader"></div>
+            <img class="pl2-db" src="https://i.imgur.com/SMI45eN.png" alt="Forma Máxima">
         </div>
+        <p class="pl2-text">Evolua com <b>método</b>, <b>intensidade</b> e <span class="r">resultado</span>.</p>
     </div>
 
     <!-- SVGs Ocultos (Ícones) -->
@@ -282,8 +248,8 @@
             <!-- Glitch/Glow Logo -->
             <div class="relative mb-6 group cursor-pointer magnetic" data-strength="20">
                 <div class="absolute inset-0 bg-brand-red opacity-0 group-hover:opacity-20 blur-2xl rounded-full transition-opacity duration-700"></div>
-                <div class="bg-white p-5 md:p-6 rounded-[2rem] border border-white/5 shadow-2xl relative overflow-hidden z-10">
-                    <img class="h-20 md:h-[110px] w-auto object-contain relative z-10" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
+                <div class="bg-white p-2.5 md:p-3 rounded-[1.75rem] border border-white/5 shadow-2xl relative overflow-hidden z-10 mx-auto">
+                    <img class="h-24 md:h-[135px] w-auto object-contain relative z-10 mx-auto" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
                 </div>
             </div>
 
@@ -469,6 +435,30 @@
             </div>
         </section>
 
+        <!-- Nutrição -->
+        <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="nutricao">
+            <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Acompanhamento Nutricional</p>
+            <h2 class="font-anton text-3xl md:text-5xl mb-12 gsap-item">NUTRIÇÃO A FAVOR DO SEU <span class="text-brand-red">RESULTADO</span></h2>
+
+            <div class="flex flex-col md:flex-row-reverse gap-10 md:gap-14 items-center text-left preserve-3d gsap-item">
+                <div class="w-full md:w-5/12 card-3d flex justify-center">
+                    <div class="w-48 h-48 md:w-64 md:h-64 rounded-full p-1.5 bg-gradient-to-br from-brand-red to-black shadow-[0_10px_40px_rgba(239,68,68,0.3)] transform translate-z-20">
+                        <!-- Imagem da Steffani atualizada conforme pedido -->
+                        <img src="https://i.imgur.com/fxl6N6a.png" alt="Steffani Cortes - Nutricionista" class="w-full h-full object-cover rounded-full border-4 border-[#050505]">
+                    </div>
+                </div>
+                <div class="w-full md:w-7/12">
+                    <div class="inline-flex items-center gap-3 mb-4 text-brand-red bg-brand-red/10 px-4 py-2 rounded-full">
+                        <svg class="w-5 h-5"><use href="#ic-apple"/></svg>
+                        <span class="text-xs font-bold uppercase tracking-widest">Steffani Cortes</span>
+                    </div>
+                    <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed border-l-2 border-brand-red pl-6 md:pl-10">
+                        Steffani é a nutricionista responsável pelo acompanhamento alimentar dos alunos Forma Máxima. Enquanto o treino constrói o físico, a nutrição sustenta o resultado — um plano alimentar personalizado, alinhado ao seu objetivo e à sua rotina, para transformar esforço em evolução real.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <!-- Planos -->
         <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="planos">
             <p class="text-brand-planos font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Invista em você</p>
@@ -536,34 +526,10 @@
             </div>
         </section>
 
-        <!-- Nutrição -->
-        <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="nutricao">
-            <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Acompanhamento Nutricional</p>
-            <h2 class="font-anton text-3xl md:text-5xl mb-12 gsap-item">NUTRIÇÃO A FAVOR DO SEU <span class="text-brand-red">RESULTADO</span></h2>
-
-            <div class="flex flex-col md:flex-row-reverse gap-10 md:gap-14 items-center text-left preserve-3d gsap-item">
-                <div class="w-full md:w-5/12 card-3d flex justify-center">
-                    <div class="w-48 h-48 md:w-64 md:h-64 rounded-full p-1.5 bg-gradient-to-br from-brand-red to-black shadow-[0_10px_40px_rgba(239,68,68,0.3)] transform translate-z-20">
-                        <!-- Imagem da Steffani atualizada conforme pedido -->
-                        <img src="https://i.imgur.com/fxl6N6a.png" alt="Steffani Cortes - Nutricionista" class="w-full h-full object-cover rounded-full border-4 border-[#050505]">
-                    </div>
-                </div>
-                <div class="w-full md:w-7/12">
-                    <div class="inline-flex items-center gap-3 mb-4 text-brand-red bg-brand-red/10 px-4 py-2 rounded-full">
-                        <svg class="w-5 h-5"><use href="#ic-apple"/></svg>
-                        <span class="text-xs font-bold uppercase tracking-widest">Steffani Cortes</span>
-                    </div>
-                    <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed border-l-2 border-brand-red pl-6 md:pl-10">
-                        Steffani é a nutricionista responsável pelo acompanhamento alimentar dos alunos Forma Máxima. Enquanto o treino constrói o físico, a nutrição sustenta o resultado — um plano alimentar personalizado, alinhado ao seu objetivo e à sua rotina, para transformar esforço em evolução real.
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <!-- Avaliações Google -->
         <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="avaliacoes-google">
             <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Avaliação Verificada</p>
-            <h2 class="font-anton text-3xl md:text-5xl mb-6 gsap-item">5 ESTRELAS NO <span class="text-brand-red">GOOGLE</span></h2>
+            <h2 class="font-anton text-3xl md:text-5xl mb-6 gsap-item">5 ESTRELAS NO <span class="tracking-wide"><span style="color:#4285F4">G</span><span style="color:#EA4335">O</span><span style="color:#FBBC05">O</span><span style="color:#4285F4">G</span><span style="color:#34A853">L</span><span style="color:#EA4335">E</span></span></h2>
 
             <!-- Mantido o número de avaliações conforme pedido -->
             <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" rel="noopener" class="inline-flex items-center gap-3 mb-14 gsap-item group bg-white/5 px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
@@ -742,7 +708,7 @@
                         { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out" }
                     );
                 }, 800);
-            }, 1000);
+            }, 1500);
         });
 
         // 4. GSAP Scroll Animations (Configuradas para não conflitar)
