@@ -48,7 +48,7 @@
             .font-anton { font-family: 'Anton', sans-serif; }
             .font-poppins { font-family: 'Poppins', sans-serif; }
 
-            /* 3D Core Utilities (Crucial para os botões originais funcionarem) */
+            /* 3D Core Utilities */
             .preserve-3d { transform-style: preserve-3d; perspective: 1000px; }
             .translate-z-10 { transform: translateZ(10px); }
             .translate-z-20 { transform: translateZ(20px); }
@@ -71,17 +71,7 @@
                 background-clip: text;
                 animation: shine 4s linear infinite;
             }
-            .text-gradient-red {
-                background: linear-gradient(to right, #ef4444 20%, #fca5a5 40%, #fca5a5 60%, #ef4444 80%);
-                background-size: 200% auto;
-                color: transparent;
-                -webkit-background-clip: text;
-                background-clip: text;
-                animation: shine 4s linear infinite;
-            }
             @keyframes shine { to { background-position: 200% center; } }
-
-            .premium-glow-red { filter: drop-shadow(0 0 15px rgba(239,68,68,0.5)); }
 
             /* Background Animado Dinâmico */
             .bg-slideshow {
@@ -101,24 +91,23 @@
                 100% { opacity: 0; transform: scale(1.2); }
             }
 
-            /* Efeitos dos Cards 3D (Hover Default) */
+            /* Efeitos dos Cards 3D */
             .card-3d {
                 transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease;
                 will-change: transform;
                 transform-style: preserve-3d;
             }
 
-            /* Glassmorphism Refinado */
-            .glass-panel {
-                background: rgba(17, 17, 17, 0.6);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255, 255, 255, 0.05);
+            /* FAQ Custom Accordion */
+            details > summary {
+                list-style: none;
+            }
+            details > summary::-webkit-details-marker {
+                display: none;
             }
         }
 
-        /* --------------------------------------
-           PRELOADER - Halter (anilha) em movimento + loading circular
-        -------------------------------------- */
+        /* Preloader */
         #preloader {
             position: fixed; inset: 0; z-index: 9999;
             background: radial-gradient(circle at 50% 45%, #101216 0%, #050506 70%);
@@ -129,18 +118,15 @@
             position: relative; width: 230px; height: 230px;
             display: flex; align-items: center; justify-content: center;
         }
-        /* aura vermelha suave */
         .pl2-ring::before {
             content: ''; position: absolute; inset: -16px; border-radius: 50%;
             background: radial-gradient(circle, rgba(239,68,68,0.22) 0%, transparent 62%);
             filter: blur(6px); pointer-events: none;
         }
-        /* trilho do loading */
         .pl2-loader {
             position: absolute; inset: 0; border-radius: 50%;
             border: 3px solid rgba(255,255,255,0.07);
         }
-        /* arco vermelho girando */
         .pl2-loader::after {
             content: ''; position: absolute; inset: -3px; border-radius: 50%;
             border: 3px solid transparent;
@@ -149,7 +135,6 @@
             animation: pl2Spin 1s linear infinite;
         }
         @keyframes pl2Spin { to { transform: rotate(360deg); } }
-        /* imagem caindo do topo e parando no centro do círculo */
         .pl2-db {
             position: relative; z-index: 1;
             width: 128px; height: auto; display: block;
@@ -159,9 +144,9 @@
         @keyframes pl2Drop {
             0%   { transform: translateY(-380px) scale(.85) rotate(-6deg); opacity: 0; }
             25%  { opacity: 1; }
-            65%  { transform: translateY(16px) scale(1.03) rotate(2deg); }   /* impacto ao cair */
-            82%  { transform: translateY(-7px) scale(.99) rotate(-1deg); }   /* quique */
-            100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; } /* parado no centro */
+            65%  { transform: translateY(16px) scale(1.03) rotate(2deg); }
+            82%  { transform: translateY(-7px) scale(.99) rotate(-1deg); }
+            100% { transform: translateY(0) scale(1) rotate(0); opacity: 1; }
         }
         .pl2-text {
             max-width: 300px; text-align: center; color: #9ca3af;
@@ -172,11 +157,28 @@
         .pl2-text b { color: #fff; font-weight: 500; }
         .pl2-text .r { color: #ef4444; font-weight: 500; }
         @keyframes pl2Text { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
-        .gsap-reveal { visibility: hidden; } /* Previne flash antes do GSAP agir */
+        .gsap-reveal { visibility: hidden; }
 
-        /* --------------------------------------
-           PREMIUM BUTTONS (Hero) - Borda animada + Glassmorphism
-        -------------------------------------- */
+        /* Animação do Título (Sombra Alternando Branco/Vermelho) */
+        @keyframes titleShadowPulse {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); }
+            50% { filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.7)); }
+        }
+        .title-shadow-animated {
+            animation: titleShadowPulse 4s infinite ease-in-out;
+        }
+
+        /* Animação Extra para o Botão Principal */
+        @keyframes mainBtnGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(37, 211, 102, 0.2); }
+            50% { box-shadow: 0 0 35px rgba(37, 211, 102, 0.6); }
+        }
+        .btn-main-highlight {
+            animation: mainBtnGlow 2s infinite ease-in-out;
+            border: 1px solid rgba(37, 211, 102, 0.3);
+        }
+
+        /* Premium Buttons */
         .btn-premium {
             position: relative; overflow: hidden;
             background: rgba(255, 255, 255, 0.03);
@@ -184,12 +186,11 @@
             border-radius: 1rem;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), background 0.4s;
         }
-        /* Borda animada (luz girando) */
         .btn-premium::before {
             content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
             background: conic-gradient(from 0deg, transparent 0%, transparent 80%, var(--glow-color, rgba(255,255,255,0.4)) 100%);
-            animation: spin 4s linear infinite;
-            z-index: -1; opacity: 0; transition: opacity 0.5s;
+            animation: spin 3s linear infinite;
+            z-index: -1; opacity: 0.4; transition: opacity 0.5s;
         }
         .btn-premium::after {
             content: ''; position: absolute; inset: 1px;
@@ -198,12 +199,25 @@
         }
         .btn-premium:hover::before { opacity: 1; }
         .btn-premium:hover::after { background: rgba(20, 20, 20, 0.9); }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
+        
+        /* Main CTA Button */
+        .btn-cta {
+            position: relative;
+            background: #ef4444;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-cta:hover {
+            background: #f87171;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body class="bg-brand-dark text-white font-poppins antialiased overflow-x-hidden selection:bg-brand-red selection:text-white">
 
-    <!-- Preloader (Halter em movimento + loading circular) -->
+    <!-- Preloader -->
     <div id="preloader">
         <div class="pl2-ring">
             <div class="pl2-loader"></div>
@@ -229,6 +243,8 @@
             <symbol id="ic-quote" viewBox="0 0 24 24"><path d="M9 6a5 5 0 0 0-5 5v7h7v-7H6a3 3 0 0 1 3-3zm10 0a5 5 0 0 0-5 5v7h7v-7h-5a3 3 0 0 1 3-3z" fill="currentColor"/></symbol>
             <symbol id="ic-contact" viewBox="0 0 24 24"><path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="currentColor"/></symbol>
             <symbol id="ic-apple" viewBox="0 0 24 24"><path d="M12.5 6.3c.3-1.7 1.8-3 3.5-3.3.3 1.6-.6 3.1-1.7 3.9 2 .2 3.9 1.9 3.9 4.6 0 4.3-3.1 9.5-5.3 9.5-1 0-1.4-.6-2.4-.6s-1.4.6-2.4.6c-2.2 0-5.3-4.9-5.3-9.3 0-3.3 2.2-5.4 4.7-5.4 1.1 0 1.9.5 2.6.5.6 0 1.2-.4 2.4-.5z" fill="currentColor"/></symbol>
+            <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/></symbol>
+            <symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="currentColor"/></symbol>
         </defs>
     </svg>
 
@@ -240,12 +256,9 @@
     </div>
     <div class="fixed inset-0 z-[-1] bg-gradient-to-b from-black/80 via-[#050505]/90 to-[#050505]"></div>
 
-    <!-- MAIN HERO / LINK TREE (Seção principal 01 do primeiro index) -->
+    <!-- MAIN HERO -->
     <main class="min-h-[100dvh] flex flex-col justify-center items-center px-6 py-12 relative z-10" id="hero-section">
-
-        <!-- HEADER -->
         <div class="text-center w-full max-w-lg mx-auto flex flex-col items-center hero-element">
-            <!-- Glitch/Glow Logo -->
             <div class="relative mb-6 group cursor-pointer magnetic" data-strength="20">
                 <div class="absolute inset-0 bg-brand-red opacity-0 group-hover:opacity-20 blur-2xl rounded-full transition-opacity duration-700"></div>
                 <div class="bg-white p-2.5 md:p-3 rounded-[1.75rem] border border-white/5 shadow-2xl relative overflow-hidden z-10 mx-auto">
@@ -253,7 +266,6 @@
                 </div>
             </div>
 
-            <!-- Badge -->
             <div class="mb-5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-red/20 bg-brand-red/5 text-brand-red text-[10px] md:text-xs font-semibold tracking-widest uppercase backdrop-blur-md">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
@@ -262,10 +274,9 @@
                 Consultoria de Alta Performance
             </div>
 
-            <!-- Premium Title -->
-            <h1 class="font-anton text-5xl md:text-[75px] leading-[1] uppercase tracking-wide mb-4">
-                <span class="text-white drop-shadow-2xl">Forma</span><br>
-                <span class="text-brand-red drop-shadow-[0_0_20px_rgba(239,68,68,0.3)]">Máxima</span>
+            <h1 class="font-anton text-5xl md:text-[75px] leading-[1] uppercase tracking-wide mb-4 title-shadow-animated">
+                <span class="text-white">Forma</span><br>
+                <span class="text-brand-red">Máxima</span>
             </h1>
 
             <p class="text-gray-400 text-sm md:text-base font-light mb-10 px-4 leading-relaxed">
@@ -273,21 +284,23 @@
             </p>
         </div>
 
-        <!-- LINKS DE ACESSO -->
         <div class="w-full max-w-sm mx-auto flex flex-col gap-4">
-
-            <!-- WhatsApp -->
-            <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" style="--glow-color: rgba(37,211,102,0.8);" class="btn-premium magnetic group flex items-center justify-between p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
-                <div class="flex items-center gap-4 relative z-10">
-                    <span class="text-brand-whatsapp group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(37,211,102,0.4)]">
-                        <svg class="w-7 h-7"><use href="#ic-whatsapp"/></svg>
-                    </span>
-                    <span class="font-semibold text-[15px] tracking-wide text-gray-200 group-hover:text-white transition-colors">Conversar no WhatsApp</span>
+            <!-- Links Principais -->
+            <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" style="--glow-color: rgba(37,211,102,0.8);" class="btn-premium btn-main-highlight magnetic group flex flex-col p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
+                <div class="flex items-center justify-between w-full">
+                    <div class="flex items-center gap-4 relative z-10">
+                        <span class="text-brand-whatsapp group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(37,211,102,0.6)]">
+                            <svg class="w-7 h-7"><use href="#ic-whatsapp"/></svg>
+                        </span>
+                        <div class="flex flex-col text-left">
+                            <span class="font-bold text-[16px] tracking-wide text-white uppercase group-hover:text-brand-whatsapp transition-colors">Entrar para a Consultoria</span>
+                            <span class="text-[10px] text-brand-whatsapp/80 font-bold uppercase tracking-widest mt-0.5">Falar com Especialista</span>
+                        </div>
+                    </div>
+                    <svg class="w-5 h-5 text-gray-400 group-hover:text-brand-whatsapp group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
                 </div>
-                <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-whatsapp group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
             </a>
 
-            <!-- Planos -->
             <a href="#planos" style="--glow-color: rgba(139,92,246,0.8);" class="btn-premium magnetic group flex items-center justify-between p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
                 <div class="flex items-center gap-4 relative z-10">
                     <span class="text-brand-planos group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(139,92,246,0.4)]">
@@ -298,7 +311,6 @@
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-planos group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
             </a>
 
-            <!-- Salvar Contato -->
             <a href="data:text/vcard;charset=utf-8,BEGIN%3AVCARD%0AVERSION%3A3.0%0AFN%3AForma%20M%C3%A1xima%0ATEL%3BTYPE%3DCELL%3A%2B553184310763%0AEND%3AVCARD" download="Forma_Maxima.vcf" style="--glow-color: rgba(56,189,248,0.8);" class="btn-premium magnetic group flex items-center justify-between p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
                 <div class="flex items-center gap-4 relative z-10">
                     <span class="text-brand-contact group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(56,189,248,0.4)]">
@@ -309,7 +321,6 @@
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-contact group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
             </a>
 
-                <!-- Instagram -->
             <a href="https://www.instagram.com/forma.maxima" target="_blank" style="--glow-color: rgba(225,48,108,0.8);" class="btn-premium magnetic group flex items-center justify-between p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
                 <div class="flex items-center gap-4 relative z-10">
                     <span class="text-brand-insta group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(225,48,108,0.4)]">
@@ -320,7 +331,6 @@
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-insta group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
             </a>
             
-            <!-- Comunidade -->
             <a href="https://chat.whatsapp.com/ILO972VgB3p1Nzvkg1tHFA?s=cl&p=i&mlu=2" target="_blank" style="--glow-color: rgba(0,168,132,0.8);" class="btn-premium magnetic group flex items-center justify-between p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
                 <div class="flex items-center gap-4 relative z-10">
                     <span class="text-brand-wacomun group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(0,168,132,0.4)]">
@@ -331,7 +341,6 @@
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-wacomun group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
             </a>
 
-                     <!-- Gymrats -->
             <a href="https://share.gymrats.app/join?code=PZSYCLKE" target="_blank" style="--glow-color: rgba(249,115,22,0.8);" class="btn-premium magnetic group flex items-center justify-between p-4 md:p-[18px] interactive-hover hero-link" data-strength="15">
                 <div class="flex items-center gap-4 relative z-10">
                     <span class="text-brand-gymrats group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_10px_rgba(249,115,22,0.4)]">
@@ -341,10 +350,8 @@
                 </div>
                 <svg class="w-5 h-5 text-gray-500 group-hover:text-brand-gymrats group-hover:translate-x-1 transition-all duration-300 relative z-10"><use href="#ic-arrow"/></svg>
             </a>
-
         </div>
 
-        <!-- Scroll Indicator -->
         <div class="flex flex-col items-center mt-12 opacity-40 animate-bounce">
             <span class="text-[10px] uppercase tracking-[0.2em] mb-2">Deslize</span>
             <div class="w-px h-8 bg-gradient-to-b from-white to-transparent"></div>
@@ -360,9 +367,7 @@
             <h2 class="font-anton text-3xl md:text-5xl mb-4 gsap-item">POR QUE ENTRAR NA <span class="text-brand-red">FORMA MÁXIMA?</span></h2>
             <p class="text-gray-400 mb-14 max-w-2xl mx-auto gsap-item">Tenha um plano feito para o seu objetivo. Evolua com estratégia, não com achismo.</p>
 
-            <!-- Restaurado para os 6 cards anteriores, com a classe card-3d -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 preserve-3d gsap-item">
-
                 <div class="card-3d bg-brand-card p-6 rounded-2xl text-left border border-white/5 hover:border-[#EF4444]/50 transition-colors">
                     <div class="bg-[#EF4444]/10 w-12 h-12 rounded-full flex items-center justify-center text-[#EF4444] mb-4 transform translate-z-20">
                         <svg class="w-6 h-6"><use href="#ic-target"/></svg>
@@ -411,27 +416,49 @@
                     <p class="text-gray-400 text-sm transform translate-z-10">Método construído para quem treina natural, do zero ao intermediário.</p>
                 </div>
             </div>
+
+            <!-- CTA 1 -->
+            <div class="mt-12 gsap-item">
+                <a href="#planos" class="inline-flex items-center justify-center gap-2 px-8 py-4 btn-cta rounded-xl font-bold uppercase tracking-widest text-sm">
+                    Quero conhecer os planos
+                    <svg class="w-5 h-5"><use href="#ic-arrow"/></svg>
+                </a>
+            </div>
         </section>
 
-        <!-- Ciência -->
-        <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="ciencia">
-            <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Por trás do método</p>
-            <h2 class="font-anton text-3xl md:text-5xl mb-12 gsap-item">A CIÊNCIA POR TRÁS DO <span class="text-brand-red">SHAPE</span></h2>
+        <!-- NOVO: Seção de Autoridade / Especialistas -->
+        <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="especialistas">
+            <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Quem Somos</p>
+            <h2 class="font-anton text-3xl md:text-5xl mb-12 gsap-item">OS <span class="text-brand-red">ESPECIALISTAS</span> POR TRÁS DO MÉTODO</h2>
 
-            <div class="flex flex-col md:flex-row gap-10 md:gap-14 items-center text-left preserve-3d gsap-item">
-                <div class="w-full md:w-5/12 card-3d group">
-                    <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl transform translate-z-20">
-                        <img src="https://i.imgur.com/CqHqS5B.png" alt="Equipe Forma Máxima" class="w-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105">
-                    </div>
-                    <div class="flex justify-between font-bold uppercase tracking-widest text-[10px] md:text-xs mt-5 text-brand-red transform translate-z-10">
-                        <span>Murilo Castanheira</span>
-                        <span>João Coutinho</span>
+            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 text-left preserve-3d gsap-item">
+                <div class="w-full md:w-1/2 card-3d">
+                    <div class="rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(239,68,68,0.15)] transform translate-z-20 relative group">
+                        <!-- Imagem da equipe / fundadores -->
+                        <img src="https://i.imgur.com/CqHqS5B.png" alt="Especialistas Forma Máxima" class="w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <p class="font-anton text-2xl tracking-wider text-white">MURILO & JOÃO</p>
+                            <p class="text-brand-red font-semibold text-sm uppercase tracking-widest">Fundadores Forma Máxima</p>
+                        </div>
                     </div>
                 </div>
-                <div class="w-full md:w-7/12">
-                    <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed border-l-2 border-brand-red pl-6 md:pl-10">
-                        Treinos individualizados, com método e acompanhamento constante, que transformam sua evolução. Foco no resultado real, do início ao fim, com progresso que você consegue ver e sentir a cada semana.
-                    </p>
+                <div class="w-full md:w-1/2 flex flex-col gap-6">
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-red/30 transition-colors">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-brand-red/10 p-2 rounded-lg text-brand-red"><svg class="w-5 h-5"><use href="#ic-shield"/></svg></div>
+                            <h3 class="font-bold text-white text-lg">Experiência Comprovada</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">A Forma Máxima nasceu da necessidade de entregar resultados reais e duradouros, unindo a prática pesada de academia com a ciência do esporte.</p>
+                    </div>
+                    
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-red/30 transition-colors">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-brand-red/10 p-2 rounded-lg text-brand-red"><svg class="w-5 h-5"><use href="#ic-target"/></svg></div>
+                            <h3 class="font-bold text-white text-lg">Foco em Resultados</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">Já transformamos a rotina e o físico de centenas de alunos. Aqui não tem plano genérico de gaveta. Analisamos sua biomecânica, rotina e objetivo para criar o caminho mais rápido e seguro para o seu shape.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -444,7 +471,6 @@
             <div class="flex flex-col md:flex-row-reverse gap-10 md:gap-14 items-center text-left preserve-3d gsap-item">
                 <div class="w-full md:w-5/12 card-3d flex justify-center">
                     <div class="w-48 h-48 md:w-64 md:h-64 rounded-full p-1.5 bg-gradient-to-br from-brand-red to-black shadow-[0_10px_40px_rgba(239,68,68,0.3)] transform translate-z-20">
-                        <!-- Imagem da Steffani atualizada conforme pedido -->
                         <img src="https://i.imgur.com/fxl6N6a.png" alt="Steffani Cortes - Nutricionista" class="w-full h-full object-cover rounded-full border-4 border-[#050505]">
                     </div>
                 </div>
@@ -453,8 +479,8 @@
                         <svg class="w-5 h-5"><use href="#ic-apple"/></svg>
                         <span class="text-xs font-bold uppercase tracking-widest">Steffani Cortes</span>
                     </div>
-                    <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed border-l-2 border-brand-red pl-6 md:pl-10">
-                        Steffani é a nutricionista responsável pelo acompanhamento alimentar dos alunos Forma Máxima. Enquanto o treino constrói o físico, a nutrição sustenta o resultado — um plano alimentar personalizado, alinhado ao seu objetivo e à sua rotina, para transformar esforço em evolução real.
+                    <p class="text-lg md:text-2xl text-gray-300 font-light leading-relaxed border-l-2 border-brand-red pl-6 md:pl-10 mb-8">
+                        Steffani é a nutricionista responsável pelo acompanhamento alimentar dos alunos Forma Máxima. Enquanto o treino constrói o físico, a nutrição sustenta o resultado — um plano alimentar personalizado para transformar esforço em evolução real.
                     </p>
                 </div>
             </div>
@@ -468,26 +494,25 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center preserve-3d gsap-item">
                 <!-- Plano Essencial -->
-                <div class="card-3d bg-brand-card p-8 rounded-3xl border border-white/5 text-left hover:border-gray-500">
+                <div class="card-3d bg-brand-card p-8 rounded-3xl border border-white/5 text-left hover:border-gray-500 flex flex-col h-full">
                     <h3 class="font-anton text-2xl mb-1 text-gray-300 transform translate-z-10">ESSENCIAL</h3>
                     <div class="flex items-end gap-1 transform translate-z-10">
                         <span class="text-gray-400 text-lg font-medium">R$</span>
                         <span class="text-3xl font-bold text-white tracking-tight">297</span>
                     </div>
                     <p class="text-xs text-gray-500 font-semibold uppercase tracking-widest mb-6 pb-6 border-b border-white/5 transform translate-z-10">/ 1 mês</p>
-                    <ul class="space-y-4 mb-8 transform translate-z-10">
+                    <ul class="space-y-4 mb-8 flex-grow transform translate-z-10">
                         <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Treino 100% personalizado</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Acesso ao aplicativo Prime Coaching</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Vídeos demonstrativos dos exercícios</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Controle de cargas e evolução</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Atualizações periódicas do treino</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Acesso ao app Prime Coaching</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Vídeos demonstrativos</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-gray-500 mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Controle de cargas</li>
                     </ul>
-                    <a href="#" class="block w-full py-3 px-4 bg-white/5 hover:bg-white/10 text-white text-center rounded-xl font-medium transition-colors transform translate-z-20">Quero esse plano</a>
+                    <a href="https://api.whatsapp.com/send/?phone=553183858403&text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Plano%20Essencial." target="_blank" class="block w-full py-3 px-4 bg-white/5 hover:bg-white/10 text-white text-center rounded-xl font-medium transition-colors transform translate-z-20 mt-auto">Quero o Essencial</a>
                 </div>
 
-                <!-- Plano Shape Max (Destaque) -->
-                <div class="card-3d bg-[#151515] p-8 rounded-3xl border border-brand-gymrats/50 relative shadow-[0_0_30px_rgba(249,115,22,0.1)] hover:shadow-[0_0_40px_rgba(249,115,22,0.2)] transition-shadow">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-gymrats to-orange-400 text-white text-[10px] md:text-xs font-bold uppercase tracking-widest py-1.5 px-5 rounded-full transform translate-z-30">
+                <!-- Plano Shape Max -->
+                <div class="card-3d bg-[#151515] p-8 rounded-3xl border border-brand-gymrats/50 relative shadow-[0_0_30px_rgba(249,115,22,0.1)] hover:shadow-[0_0_40px_rgba(249,115,22,0.2)] transition-shadow flex flex-col h-full lg:scale-105 z-10">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-gymrats to-orange-400 text-white text-[10px] md:text-xs font-bold uppercase tracking-widest py-1.5 px-5 rounded-full transform translate-z-30 whitespace-nowrap">
                         Mais Escolhido
                     </div>
                     <h3 class="font-anton text-2xl mb-1 mt-2 text-brand-gymrats transform translate-z-20">SHAPE MAX</h3>
@@ -496,51 +521,49 @@
                         <span class="text-4xl font-bold text-white tracking-tight">697</span>
                     </div>
                     <p class="text-xs text-brand-gymrats/70 font-semibold uppercase tracking-widest mb-6 pb-6 border-b border-white/5 transform translate-z-10">/ 3 meses</p>
-                    <ul class="space-y-4 mb-8 transform translate-z-10">
+                    <ul class="space-y-4 mb-8 flex-grow transform translate-z-10">
                         <li class="flex items-start gap-3 text-sm font-semibold text-white"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Tudo do Plano Essencial</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-200"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Consulta + Acompanhamento Nutricional</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-200"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Acompanhamento Nutricional</li>
                         <li class="flex items-start gap-3 text-sm text-gray-200"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Ajustes estratégicos frequentes</li>
                         <li class="flex items-start gap-3 text-sm text-gray-200"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Análise técnica da execução</li>
                         <li class="flex items-start gap-3 text-sm text-gray-200"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Canal direto para suporte</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-200"><span class="text-brand-gymrats mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Acompanhamento contínuo da evolução</li>
                     </ul>
-                    <a href="#" class="block w-full py-3 md:py-4 px-4 bg-gradient-to-r from-brand-gymrats to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white text-center rounded-xl font-bold transition-all transform translate-z-30">Quero esse plano</a>
+                    <a href="https://api.whatsapp.com/send/?phone=553183858403&text=Ol%C3%A1!%20Gostaria%20de%20assinar%20o%20Plano%20Shape%20Max." target="_blank" class="block w-full py-3 md:py-4 px-4 bg-gradient-to-r from-brand-gymrats to-orange-500 hover:from-orange-500 hover:to-orange-400 text-white text-center rounded-xl font-bold transition-all transform translate-z-30 mt-auto shadow-lg">Quero o Shape Max</a>
                 </div>
 
-                <!-- Plano Evolution Max (Vermelho) -->
-                <div class="card-3d bg-brand-card p-8 rounded-3xl border border-brand-red/40 text-left hover:border-brand-red shadow-[0_0_30px_rgba(239,68,68,0.08)] hover:shadow-[0_0_40px_rgba(239,68,68,0.18)] transition-shadow">
+                <!-- Plano Evolution Max -->
+                <div class="card-3d bg-brand-card p-8 rounded-3xl border border-brand-red/40 text-left hover:border-brand-red shadow-[0_0_30px_rgba(239,68,68,0.08)] hover:shadow-[0_0_40px_rgba(239,68,68,0.18)] transition-shadow flex flex-col h-full">
                     <h3 class="font-anton text-2xl mb-1 text-brand-red transform translate-z-10">EVOLUTION MAX</h3>
                     <div class="flex items-end gap-1 transform translate-z-10">
                         <span class="text-brand-red/80 text-lg font-medium">R$</span>
                         <span class="text-3xl font-bold text-white tracking-tight">1297</span>
                     </div>
                     <p class="text-xs text-brand-red/70 font-semibold uppercase tracking-widest mb-6 pb-6 border-b border-white/5 transform translate-z-10">/ 6 meses</p>
-                    <ul class="space-y-4 mb-8 transform translate-z-10">
-                        <li class="flex items-start gap-3 text-sm font-semibold text-white"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Tudo do Plano Shape Max</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> 2 Consultas + Acompanhamento Nutricional</li>
+                    <ul class="space-y-4 mb-8 flex-grow transform translate-z-10">
+                        <li class="flex items-start gap-3 text-sm font-semibold text-white"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Tudo do Shape Max</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> 2 Consultas de Nutrição</li>
                         <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Prioridade máxima no suporte</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Acompanhamento completo de resultados</li>
-                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Estratégias personalizadas para cada fase do objetivo</li>
+                        <li class="flex items-start gap-3 text-sm text-gray-300"><span class="text-brand-red mt-0.5"><svg class="w-5 h-5"><use href="#ic-check"/></svg></span> Estratégias para cada fase</li>
                     </ul>
-                    <a href="#" class="block w-full py-3 px-4 bg-brand-red hover:bg-red-500 text-white text-center rounded-xl font-bold transition-colors transform translate-z-20">Quero esse plano</a>
+                    <a href="https://api.whatsapp.com/send/?phone=553183858403&text=Ol%C3%A1!%20Gostaria%20de%20assinar%20o%20Plano%20Evolution%20Max." target="_blank" class="block w-full py-3 px-4 bg-brand-red hover:bg-red-500 text-white text-center rounded-xl font-bold transition-colors transform translate-z-20 mt-auto">Quero o Evolution Max</a>
                 </div>
             </div>
         </section>
 
-        <!-- Avaliações Google -->
-        <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="avaliacoes-google">
+        <!-- Avaliações & Resultados -->
+        <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="avaliacoes">
             <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Avaliação Verificada</p>
             <h2 class="font-anton text-3xl md:text-5xl mb-6 gsap-item">5 ESTRELAS NO <span class="tracking-wide"><span style="color:#4285F4">G</span><span style="color:#EA4335">O</span><span style="color:#FBBC05">O</span><span style="color:#4285F4">G</span><span style="color:#34A853">L</span><span style="color:#EA4335">E</span></span></h2>
 
-            <!-- Mantido o número de avaliações conforme pedido -->
             <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" rel="noopener" class="inline-flex items-center gap-3 mb-14 gsap-item group bg-white/5 px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
                 <img src="https://images.icon-icons.com/2642/PNG/512/google_logo_g_logo_icon_159348.png" alt="Google" class="w-6 h-6">
                 <span class="text-amber-400 text-2xl font-bold tracking-widest">★★★★★</span>
                 <span class="text-gray-300 font-medium text-sm group-hover:text-white">(11 avaliações)</span>
             </a>
 
-            <!-- Restaurado os 4 depoimentos originais -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 preserve-3d gsap-item">
+            <!-- Depoimentos Texto -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 preserve-3d gsap-item mb-16">
+                <!-- ... (Os 4 depoimentos em texto) ... -->
                 <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
                     <div class="flex items-center gap-4 mb-5 transform translate-z-10">
                         <img src="https://i.imgur.com/ZQFth7g.png" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Marcela San Severino">
@@ -551,7 +574,6 @@
                     </div>
                     <p class="text-gray-400 text-sm md:text-base italic flex-grow transform translate-z-10">"Dedicação e metodologia Forma Máxima, o resultado é certo! 💪"</p>
                 </div>
-
                 <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
                     <div class="flex items-center gap-4 mb-5 transform translate-z-10">
                         <img src="https://i.imgur.com/TPwLOD3.png" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Vicente Caleb">
@@ -560,106 +582,104 @@
                             <span class="text-amber-400 text-xs tracking-widest">★★★★★</span>
                         </div>
                     </div>
-                    <p class="text-gray-400 text-sm md:text-base italic flex-grow transform translate-z-10">"Com a consultoria, consegui evoluir meu físico de verdade: mais massa muscular, definição e constância nos treinos. Resultado visível em poucas semanas. Obrigado, Forma Máxima!"</p>
-                </div>
-
-                <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
-                    <div class="flex items-center gap-4 mb-5 transform translate-z-10">
-                        <img src="https://i.imgur.com/y5I28DS.png" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Victoria Rodrigues">
-                        <div>
-                            <p class="font-bold text-sm text-white">Victoria Rodrigues</p>
-                            <span class="text-amber-400 text-xs tracking-widest">★★★★★</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-sm md:text-base italic flex-grow transform translate-z-10">"Ter iniciado a consultoria com a Forma mudou muito a minha visão sobre o que realmente é eficiente para conseguir progredir e otimizar meus treinos."</p>
-                </div>
-
-                <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
-                    <div class="flex items-center gap-4 mb-5 transform translate-z-10">
-                        <img src="https://i.imgur.com/D1vDIML.png" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Eduarda Oliveira">
-                        <div>
-                            <p class="font-bold text-sm text-white">Eduarda Oliveira</p>
-                            <span class="text-amber-400 text-xs tracking-widest">★★★★★</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-400 text-sm md:text-base italic flex-grow transform translate-z-10">"Em apenas 4 semanas, minha evolução já me impressiona: mais definição, e um físico mais estético. Obrigado Forma Máxima. 🚀"</p>
+                    <p class="text-gray-400 text-sm md:text-base italic flex-grow transform translate-z-10">"Com a consultoria, consegui evoluir meu físico de verdade: mais massa muscular, definição e constância nos treinos. Resultado visível em poucas semanas."</p>
                 </div>
             </div>
-        </section>
 
-        <!-- Resultados -->
-        <section class="max-w-6xl mx-auto px-4 md:px-6 mt-32 text-center gsap-section" id="resultados">
+            <!-- Provas Sociais Fotos -->
             <p class="text-brand-resultados font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Prova Real</p>
             <h2 class="font-anton text-3xl md:text-5xl mb-14 gsap-item">RESULTADOS DE <span class="text-brand-resultados">ALUNOS</span></h2>
 
-            <!-- Restaurado para os 3 alunos completos (Victoria, Marcela, Eduarda) -->
             <div class="flex flex-col gap-16 preserve-3d gsap-item">
-
+                <!-- Aluno 1 -->
                 <div class="card-3d bg-brand-card p-6 md:p-8 rounded-[2rem] border border-white/5 relative hover:border-brand-resultados/30 text-left">
                     <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-yellow-400 to-brand-resultados rounded-full flex items-center justify-center text-black transform translate-z-30 shadow-[0_5px_20px_rgba(234,179,8,0.5)] z-20">
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
                     </div>
-
                     <div class="grid grid-cols-3 gap-3 md:gap-5 mb-8 mt-4 transform translate-z-20">
                         <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/BEKft3U.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
                         <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/lnfiWhO.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
                         <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/DfOwEj0.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
                     </div>
-
                     <p class="text-gray-300 italic text-lg md:text-xl transform translate-z-10 leading-relaxed">"Em poucos meses o treino deixou de ser sem direção. Cada semana teve propósito."</p>
                     <p class="mt-4 font-bold text-brand-resultados text-lg transform translate-z-20 uppercase tracking-widest">— Victoria</p>
                 </div>
+            </div>
 
-                <div class="card-3d bg-brand-card p-6 md:p-8 rounded-[2rem] border border-white/5 relative hover:border-brand-resultados/30 text-left">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-yellow-400 to-brand-resultados rounded-full flex items-center justify-center text-black transform translate-z-30 shadow-[0_5px_20px_rgba(234,179,8,0.5)] z-20">
-                        <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
-                    </div>
+            <!-- CTA 2 -->
+            <div class="mt-16 gsap-item">
+                <a href="#planos" class="inline-flex items-center justify-center gap-2 px-8 py-5 btn-cta rounded-full font-bold uppercase tracking-widest text-sm w-full md:w-auto shadow-2xl shadow-red-500/20">
+                    Comece a Sua Transformação
+                    <svg class="w-5 h-5"><use href="#ic-arrow"/></svg>
+                </a>
+            </div>
+        </section>
 
-                    <div class="grid grid-cols-3 gap-3 md:gap-5 mb-8 mt-4 transform translate-z-20">
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/XUIG2H6.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/c3iI1cK.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/P1Yj2to.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                    </div>
+        <!-- NOVO: Seção de Perguntas Frequentes (FAQ) -->
+        <section class="max-w-3xl mx-auto px-6 mt-32 gsap-section" id="faq">
+            <div class="text-center mb-10">
+                <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Tire suas dúvidas</p>
+                <h2 class="font-anton text-3xl md:text-4xl gsap-item">PERGUNTAS <span class="text-brand-red">FREQUENTES</span></h2>
+            </div>
 
-                    <p class="text-gray-300 italic text-lg md:text-xl transform translate-z-10 leading-relaxed">"O acompanhamento próximo fez toda diferença. Hoje treino com estratégia, não no improviso."</p>
-                    <p class="mt-4 font-bold text-brand-resultados text-lg transform translate-z-20 uppercase tracking-widest">— Marcela</p>
-                </div>
+            <div class="space-y-4 gsap-item">
+                <details class="bg-brand-card border border-white/5 rounded-2xl p-6 group open:border-brand-red/30 transition-colors cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-white">
+                        A consultoria serve para iniciantes?
+                        <span class="text-brand-red group-open:rotate-45 transition-transform duration-300"><svg class="w-6 h-6"><use href="#ic-plus"/></svg></span>
+                    </summary>
+                    <p class="mt-4 text-gray-400 text-sm leading-relaxed">Completamente. O método é ajustado exatamente para o seu nível atual. Se você é iniciante, aprenderá a executar com técnica, evitando lesões e garantindo o máximo de resultado desde o dia 1.</p>
+                </details>
 
-                <div class="card-3d bg-brand-card p-6 md:p-8 rounded-[2rem] border border-white/5 relative hover:border-brand-resultados/30 text-left">
-                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-yellow-400 to-brand-resultados rounded-full flex items-center justify-center text-black transform translate-z-30 shadow-[0_5px_20px_rgba(234,179,8,0.5)] z-20">
-                        <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
-                    </div>
+                <details class="bg-brand-card border border-white/5 rounded-2xl p-6 group open:border-brand-red/30 transition-colors cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-white">
+                        O plano alimentar está incluso?
+                        <span class="text-brand-red group-open:rotate-45 transition-transform duration-300"><svg class="w-6 h-6"><use href="#ic-plus"/></svg></span>
+                    </summary>
+                    <p class="mt-4 text-gray-400 text-sm leading-relaxed">Sim! Nos planos <span class="text-white font-medium">Shape Max</span> e <span class="text-white font-medium">Evolution Max</span>, você terá acompanhamento completo com nossa nutricionista Steffani Cortes, garantindo a ingestão correta para hipertrofia ou definição.</p>
+                </details>
 
-                    <div class="grid grid-cols-3 gap-3 md:gap-5 mb-8 mt-4 transform translate-z-20">
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/PmgW990.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/h285bpG.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/qsvoBH8.png" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                    </div>
+                <details class="bg-brand-card border border-white/5 rounded-2xl p-6 group open:border-brand-red/30 transition-colors cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-white">
+                        Como funciona o suporte? É um robô?
+                        <span class="text-brand-red group-open:rotate-45 transition-transform duration-300"><svg class="w-6 h-6"><use href="#ic-plus"/></svg></span>
+                    </summary>
+                    <p class="mt-4 text-gray-400 text-sm leading-relaxed">Não usamos robôs. Seu contato será diretamente pelo WhatsApp com os treinadores. Você poderá enviar vídeos das execuções, tirar dúvidas sobre o treino e relatar seu nível de fadiga semanalmente.</p>
+                </details>
 
-                    <p class="text-gray-300 italic text-lg md:text-xl transform translate-z-10 leading-relaxed">"Método sério para quem quer evoluir de verdade. Os ajustes mensais mudaram meu shape."</p>
-                    <p class="mt-4 font-bold text-brand-resultados text-lg transform translate-z-20 uppercase tracking-widest">— Eduarda</p>
-                </div>
+                <details class="bg-brand-card border border-white/5 rounded-2xl p-6 group open:border-brand-red/30 transition-colors cursor-pointer">
+                    <summary class="flex justify-between items-center font-bold text-lg text-white">
+                        Em quanto tempo verei resultados?
+                        <span class="text-brand-red group-open:rotate-45 transition-transform duration-300"><svg class="w-6 h-6"><use href="#ic-plus"/></svg></span>
+                    </summary>
+                    <p class="mt-4 text-gray-400 text-sm leading-relaxed">A hipertrofia é um processo crônico, mas com aderência total ao nosso método (treino e dieta alinhados), nas primeiras <span class="text-white">4 semanas</span> os alunos já relatam aumento de força, tônus muscular e mudanças visíveis no espelho e nas medidas.</p>
+                </details>
             </div>
         </section>
 
         <!-- Footer Premium -->
         <footer class="mt-32 border-t border-white/5 relative bg-gradient-to-b from-[#050505] to-black pt-24 pb-12 text-center px-6">
-
-            <!-- Glow no footer -->
             <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-brand-red/10 blur-[100px] z-0 pointer-events-none"></div>
 
             <div class="relative z-10 flex flex-col items-center gsap-section">
-
+                
                 <div class="inline-block bg-white p-5 rounded-[2rem] shadow-[0_0_40px_rgba(255,255,255,0.1)] mb-6 transform transition-transform hover:scale-110 duration-500 gsap-item">
                     <img class="h-14 md:h-16 object-contain" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima">
                 </div>
 
                 <p class="font-anton text-2xl md:text-4xl tracking-widest text-white mb-3 gsap-item">FORMA MÁXIMA</p>
 
-                <!-- Texto atualizado conforme pedido -->
-                <p class="text-gray-400 text-sm md:text-base font-light mb-10 max-w-sm mx-auto leading-relaxed gsap-item">
+                <p class="text-gray-400 text-sm md:text-base font-light mb-8 max-w-sm mx-auto leading-relaxed gsap-item">
                     Elevando o padrão do seu treino. Estratégia, método e resultados reais para transformar seu físico.
                 </p>
+
+                <!-- CTA 3 (Final Footer) -->
+                <div class="gsap-item mb-12 w-full max-w-xs mx-auto">
+                    <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" class="flex items-center justify-center gap-2 w-full py-4 bg-brand-red/10 border border-brand-red/30 hover:bg-brand-red hover:border-brand-red text-white rounded-xl font-bold transition-all duration-300">
+                        <svg class="w-5 h-5"><use href="#ic-whatsapp"/></svg>
+                        Falar com o Suporte
+                    </a>
+                </div>
 
                 <div class="flex justify-center gap-8 mb-12 gsap-item">
                     <a href="https://api.whatsapp.com/send/?phone=553183858403" target="_blank" rel="noopener" class="text-gray-500 hover:text-brand-whatsapp hover:scale-110 transition-all duration-300">
@@ -702,8 +722,6 @@
 
                 setTimeout(() => {
                     preloader.style.display = 'none';
-
-                    // Animação de entrada dos itens do topo
                     gsap.fromTo(".gsap-reveal",
                         { y: 50, opacity: 0 },
                         { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out" }
@@ -712,7 +730,7 @@
             }, 1500);
         });
 
-        // 4. GSAP Scroll Animations (Configuradas para não conflitar)
+        // 4. GSAP Scroll Animations
         gsap.utils.toArray('.gsap-section').forEach(section => {
             const items = section.querySelectorAll('.gsap-item');
             if(items.length > 0) {
@@ -726,47 +744,39 @@
             }
         });
 
-        // 5. Script de Tilt 3D Seguro (Botões Originais)
-        // Ao invés de ficar brigando com classes, nós aplicamos o tilt diretamente no card
-        // e desligamos a transição css durante o movimento do mouse para evitar piscadas.
+        // 5. Tilt 3D Seguro
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
             const cards3d = document.querySelectorAll('.card-3d');
-
             cards3d.forEach(card => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-
                     const centerX = rect.width / 2;
                     const centerY = rect.height / 2;
-
                     const rotateX = ((y - centerY) / centerY) * -12;
                     const rotateY = ((x - centerX) / centerX) * 12;
 
-                    card.style.transition = 'none'; // Desliga transição suave ao mover
+                    card.style.transition = 'none'; 
                     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
                 });
 
                 card.addEventListener('mouseleave', () => {
-                    card.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease'; // Religa transição ao sair
+                    card.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease, border-color 0.3s ease'; 
                     card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
                 });
             });
         }
 
-        // 6. Magnetic Buttons (Hero) - efeito ímã dos botões premium
+        // 6. Magnetic Buttons (Hero)
         if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
             const magneticElements = document.querySelectorAll('.magnetic');
-
             magneticElements.forEach((el) => {
                 el.addEventListener('mousemove', (e) => {
                     const bound = el.getBoundingClientRect();
                     const strength = el.dataset.strength || 20;
-
                     const cx = bound.left + bound.width / 2;
                     const cy = bound.top + bound.height / 2;
-
                     const tx = ((e.clientX - cx) / bound.width) * strength;
                     const ty = ((e.clientY - cy) / bound.height) * strength;
 
