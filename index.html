@@ -159,13 +159,32 @@
         @keyframes pl2Text { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
         .gsap-reveal { visibility: hidden; }
 
-        /* Animação do Título (Sombra Alternando Branco/Vermelho) */
-        @keyframes titleShadowPulse {
-            0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15)); }
-            50% { filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.7)); }
+        /* Animação Suave e Sofisticada do Título (Alternando Cores Branca e Vermelha) */
+        @keyframes colorSwapWhiteRed {
+            0%, 100% { 
+                color: #ffffff; 
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.1); 
+            }
+            50% { 
+                color: #ef4444; 
+                text-shadow: 0 0 35px rgba(239, 68, 68, 0.6); 
+            }
         }
-        .title-shadow-animated {
-            animation: titleShadowPulse 4s infinite ease-in-out;
+        @keyframes colorSwapRedWhite {
+            0%, 100% { 
+                color: #ef4444; 
+                text-shadow: 0 0 35px rgba(239, 68, 68, 0.6); 
+            }
+            50% { 
+                color: #ffffff; 
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.1); 
+            }
+        }
+        .title-anim-1 {
+            animation: colorSwapWhiteRed 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+        .title-anim-2 {
+            animation: colorSwapRedWhite 5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
         /* Animação Extra para o Botão Principal */
@@ -274,9 +293,10 @@
                 Consultoria de Alta Performance
             </div>
 
-            <h1 class="font-anton text-5xl md:text-[75px] leading-[1] uppercase tracking-wide mb-4 title-shadow-animated">
-                <span class="text-white">Forma</span><br>
-                <span class="text-brand-red">Máxima</span>
+            <!-- NOVO: Título com transição cruzada de cores de forma suave e sofisticada -->
+            <h1 class="font-anton text-5xl md:text-[75px] leading-[1] uppercase tracking-wide mb-4">
+                <span class="title-anim-1 block">Forma</span>
+                <span class="title-anim-2 block">Máxima</span>
             </h1>
 
             <p class="text-gray-400 text-sm md:text-base font-light mb-10 px-4 leading-relaxed">
@@ -426,7 +446,7 @@
             </div>
         </section>
 
-        <!-- NOVO: Seção de Autoridade / Especialistas -->
+        <!-- Seção de Autoridade / Especialistas -->
         <section class="max-w-5xl mx-auto px-6 mt-32 text-center gsap-section" id="especialistas">
             <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Quem Somos</p>
             <h2 class="font-anton text-3xl md:text-5xl mb-12 gsap-item">OS <span class="text-brand-red">ESPECIALISTAS</span> POR TRÁS DO MÉTODO</h2>
@@ -563,7 +583,6 @@
 
             <!-- Depoimentos Texto -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 preserve-3d gsap-item mb-16">
-                <!-- ... (Os 4 depoimentos em texto) ... -->
                 <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
                     <div class="flex items-center gap-4 mb-5 transform translate-z-10">
                         <img src="https://i.imgur.com/ZQFth7g.png" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Marcela San Severino">
@@ -615,7 +634,7 @@
             </div>
         </section>
 
-        <!-- NOVO: Seção de Perguntas Frequentes (FAQ) -->
+        <!-- Seção de Perguntas Frequentes (FAQ) -->
         <section class="max-w-3xl mx-auto px-6 mt-32 gsap-section" id="faq">
             <div class="text-center mb-10">
                 <p class="text-brand-red font-semibold text-sm uppercase tracking-widest mb-2 gsap-item">Tire suas dúvidas</p>
