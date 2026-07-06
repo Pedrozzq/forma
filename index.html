@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Forma Máxima | Consultoria de Musculação</title>
     <meta name="description" content="Consultoria de musculação para quem quer evoluir com método, intensidade e resultado.">
-    <link rel="icon" type="image/png" href="https://i.imgur.com/QVdz5Ni.png">
+    <link rel="icon" type="image/webp" href="img/logo.webp">
 
-    <!-- Preconnect: acelera a conexão com os domínios externos -->
+    <!-- Preconnect: acelera a conexão com os domínios externos (fontes e libs) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://i.imgur.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
 
     <!-- Preload das imagens críticas (logo do topo e do preloader) -->
-    <link rel="preload" as="image" href="https://i.imgur.com/QVdz5Ni.png" fetchpriority="high">
-    <link rel="preload" as="image" href="https://i.imgur.com/SMI45eN.png">
+    <link rel="preload" as="image" href="img/logo.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="img/preloader.webp">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -88,9 +86,9 @@
                 background-size: cover; background-position: center;
                 opacity: 0; animation: kenburns 24s infinite;
             }
-            .bg-slide-1 { background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=75&w=1280&auto=format&fit=crop'); animation-delay: 0s; }
-            .bg-slide-2 { background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=75&w=1280&auto=format&fit=crop'); animation-delay: 8s; }
-            .bg-slide-3 { background-image: url('https://images.unsplash.com/photo-1534258936925-c58bed479fcb?q=75&w=1280&auto=format&fit=crop'); animation-delay: 16s; }
+            .bg-slide-1 { background-image: url('img/bg-1.webp'); animation-delay: 0s; }
+            .bg-slide-2 { background-image: url('img/bg-2.webp'); animation-delay: 8s; }
+            .bg-slide-3 { background-image: url('img/bg-3.webp'); animation-delay: 16s; }
 
             @keyframes kenburns {
                 0% { opacity: 0; transform: scale(1); }
@@ -234,7 +232,7 @@
     <div id="preloader">
         <div class="pl2-ring">
             <div class="pl2-loader"></div>
-            <img class="pl2-db" src="https://i.imgur.com/SMI45eN.png" alt="Forma Máxima" width="128" height="128">
+            <img class="pl2-db" src="img/preloader.webp" alt="Forma Máxima" width="128" height="128">
         </div>
         <p class="pl2-text">Evolua com <b>método</b>, <b>intensidade</b> e <span class="r">resultado</span>.</p>
     </div>
@@ -296,7 +294,7 @@
             <div class="relative mb-6 group cursor-pointer magnetic" data-strength="20">
                 <div class="absolute inset-0 bg-brand-red opacity-0 group-hover:opacity-20 blur-2xl rounded-full transition-opacity duration-700"></div>
                 <div class="bg-white p-2.5 md:p-3 rounded-[1.75rem] border border-white/5 shadow-2xl relative overflow-hidden z-10 mx-auto">
-                    <img class="h-24 md:h-[135px] w-auto object-contain relative z-10 mx-auto" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima" width="135" height="135" fetchpriority="high" decoding="async">
+                    <img class="h-24 md:h-[135px] w-auto object-contain relative z-10 mx-auto" src="img/logo.webp" alt="Forma Máxima" width="135" height="135" fetchpriority="high" decoding="async">
                 </div>
             </div>
 
@@ -469,7 +467,7 @@
             <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 text-left preserve-3d gsap-item">
                 <div class="w-full md:w-1/2 card-3d">
                     <div class="rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(239,68,68,0.15)] transform translate-z-20 relative group">
-                        <img src="https://i.imgur.com/CqHqS5B.png" alt="Especialistas Forma Máxima" loading="lazy" decoding="async" class="w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="img/especialistas.webp" alt="Especialistas Forma Máxima" loading="lazy" decoding="async" class="w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                         <div class="absolute bottom-6 left-6 right-6">
                             <p class="font-anton text-2xl tracking-wider text-white">MURILO & JOÃO</p>
@@ -505,7 +503,7 @@
             <div class="flex flex-col md:flex-row-reverse gap-10 md:gap-14 items-center text-left preserve-3d gsap-item">
                 <div class="w-full md:w-5/12 card-3d flex justify-center">
                     <div class="w-48 h-48 md:w-64 md:h-64 rounded-full p-1.5 bg-gradient-to-br from-brand-red to-black shadow-[0_10px_40px_rgba(239,68,68,0.3)] transform translate-z-20">
-                        <img src="https://i.imgur.com/fxl6N6a.png" alt="Steffani Cortes - Nutricionista" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-full border-4 border-[#050505]">
+                        <img src="img/steffani.webp" alt="Steffani Cortes - Nutricionista" loading="lazy" decoding="async" class="w-full h-full object-cover rounded-full border-4 border-[#050505]">
                     </div>
                 </div>
                 <div class="w-full md:w-7/12">
@@ -590,7 +588,7 @@
             <h2 class="font-anton text-3xl md:text-5xl mb-6 gsap-item">5 ESTRELAS NO <span class="tracking-wide"><span style="color:#FBBC05">G</span><span style="color:#FBBC05">O</span><span style="color:#FBBC05">O</span><span style="color:#FBBC05">G</span><span style="color:#FBBC05">L</span><span style="color:#FBBC05">E</span></span></h2>
 
             <a href="https://www.google.com/search?q=Consultoria+Forma+M%C3%A1xima&lrd=0x6d787321a96e9ec1:0xd794876af510d9fb,1" target="_blank" rel="noopener" class="inline-flex items-center gap-3 mb-14 gsap-item group bg-white/5 px-6 py-3 rounded-full hover:bg-white/10 transition-colors">
-                <img src="https://images.icon-icons.com/2642/PNG/512/google_logo_g_logo_icon_159348.png" alt="Google" loading="lazy" decoding="async" width="24" height="24" class="w-6 h-6">
+                <img src="img/google.webp" alt="Google" loading="lazy" decoding="async" width="24" height="24" class="w-6 h-6">
                 <span class="text-amber-400 text-2xl font-bold tracking-widest">★★★★★</span>
                 <span class="text-gray-300 font-medium text-sm group-hover:text-white">(11 avaliações)</span>
             </a>
@@ -599,7 +597,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 preserve-3d gsap-item mb-16">
                 <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
                     <div class="flex items-center gap-4 mb-5 transform translate-z-10">
-                        <img src="https://i.imgur.com/ZQFth7g.png" loading="lazy" decoding="async" width="48" height="48" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Marcela San Severino">
+                        <img src="img/avatar-marcela.webp" loading="lazy" decoding="async" width="48" height="48" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Marcela San Severino">
                         <div>
                             <p class="font-bold text-sm text-white">Marcela San Severino</p>
                             <span class="text-amber-400 text-xs tracking-widest">★★★★★</span>
@@ -609,7 +607,7 @@
                 </div>
                 <div class="card-3d bg-brand-card p-6 rounded-3xl border border-white/5 text-left flex flex-col hover:border-brand-red/30">
                     <div class="flex items-center gap-4 mb-5 transform translate-z-10">
-                        <img src="https://i.imgur.com/TPwLOD3.png" loading="lazy" decoding="async" width="48" height="48" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Vicente Caleb">
+                        <img src="img/avatar-vicente.webp" loading="lazy" decoding="async" width="48" height="48" class="w-12 h-12 rounded-full object-cover border border-white/10" alt="Vicente Caleb">
                         <div>
                             <p class="font-bold text-sm text-white">Vicente Caleb</p>
                             <span class="text-amber-400 text-xs tracking-widest">★★★★★</span>
@@ -630,9 +628,9 @@
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
                     </div>
                     <div class="grid grid-cols-3 gap-3 md:gap-5 mb-8 mt-4 transform translate-z-20">
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/BEKft3U.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/lnfiWhO.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/DfOwEj0.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/victoria-1.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/victoria-2.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/victoria-3.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
                     </div>
                     <p class="text-gray-300 italic text-lg md:text-xl transform translate-z-10 leading-relaxed">"Em poucos meses o treino deixou de ser sem direção. Cada semana teve propósito."</p>
                     <p class="mt-4 font-bold text-brand-resultados text-lg transform translate-z-20 uppercase tracking-widest">— Victoria</p>
@@ -644,9 +642,9 @@
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
                     </div>
                     <div class="grid grid-cols-3 gap-3 md:gap-5 mb-8 mt-4 transform translate-z-20">
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/XUIG2H6.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/c3iI1cK.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/P1Yj2to.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/marcela-1.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/marcela-2.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/marcela-3.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
                     </div>
                     <p class="text-gray-300 italic text-lg md:text-xl transform translate-z-10 leading-relaxed">"O acompanhamento próximo fez toda diferença. Hoje treino com estratégia, não no improviso."</p>
                     <p class="mt-4 font-bold text-brand-resultados text-lg transform translate-z-20 uppercase tracking-widest">— Marcela</p>
@@ -658,9 +656,9 @@
                         <svg class="w-5 h-5"><use href="#ic-quote"/></svg>
                     </div>
                     <div class="grid grid-cols-3 gap-3 md:gap-5 mb-8 mt-4 transform translate-z-20">
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/PmgW990.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/h285bpG.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
-                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="https://i.imgur.com/qsvoBH8.png" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/eduarda-1.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/eduarda-2.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
+                        <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-black"><img src="img/eduarda-3.webp" loading="lazy" decoding="async" class="object-cover w-full h-full opacity-80 hover:opacity-100 hover:scale-105 transition-all duration-500"></div>
                     </div>
                     <p class="text-gray-300 italic text-lg md:text-xl transform translate-z-10 leading-relaxed">"Método sério para quem quer evoluir de verdade. Os ajustes mensais mudaram meu shape."</p>
                     <p class="mt-4 font-bold text-brand-resultados text-lg transform translate-z-20 uppercase tracking-widest">— Eduarda</p>
@@ -725,7 +723,7 @@
             <div class="relative z-10 flex flex-col items-center gsap-section">
 
                 <div class="inline-block bg-white p-5 rounded-[2rem] shadow-[0_0_40px_rgba(255,255,255,0.1)] mb-6 transform transition-transform hover:scale-110 duration-500 gsap-item">
-                    <img class="h-14 md:h-16 object-contain" src="https://i.imgur.com/QVdz5Ni.png" alt="Forma Máxima" loading="lazy" decoding="async">
+                    <img class="h-14 md:h-16 object-contain" src="img/logo.webp" alt="Forma Máxima" loading="lazy" decoding="async">
                 </div>
 
                 <p class="font-anton text-2xl md:text-4xl tracking-widest text-white mb-3 gsap-item">FORMA MÁXIMA</p>
