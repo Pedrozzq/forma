@@ -224,6 +224,24 @@
             box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
             transform: translateY(-2px);
         }
+
+        /* -----------------------------------------------------------
+           CORREÇÃO MOBILE — imagens sumindo no celular
+           Alguns celulares (principalmente iPhone/Safari) não
+           renderizam imagens dentro de elementos com transform 3D
+           (translateZ) + overflow:hidden + border-radius.
+           O efeito 3D só é usado no desktop (efeito tilt com o mouse),
+           então desligamos o contexto 3D em telas de toque.
+           Isso NÃO muda a aparência no celular.
+        ----------------------------------------------------------- */
+        @media (hover: none), (pointer: coarse) {
+            .preserve-3d { perspective: none !important; }
+            .card-3d { transform-style: flat !important; will-change: auto !important; }
+            .translate-z-10,
+            .translate-z-20,
+            .translate-z-30,
+            .translate-z-40 { transform: none !important; }
+        }
     </style>
 </head>
 <body class="bg-brand-dark text-white font-poppins antialiased overflow-x-hidden selection:bg-brand-red selection:text-white">
@@ -467,7 +485,7 @@
             <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 text-left preserve-3d gsap-item">
                 <div class="w-full md:w-1/2 card-3d">
                     <div class="rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_10px_30px_rgba(239,68,68,0.15)] transform translate-z-20 relative group">
-                        <img src="img/especialistas.webp" alt="Especialistas Forma Máxima" loading="lazy" decoding="async" class="w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <img src="img/especialistas.webp?v=2" alt="Especialistas Forma Máxima" decoding="async" class="w-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
                         <div class="absolute bottom-6 left-6 right-6">
                             <p class="font-anton text-2xl tracking-wider text-white">MURILO & JOÃO</p>
