@@ -266,13 +266,8 @@
                 pl.style.opacity = '0';
                 setTimeout(function () { pl.style.display = 'none'; }, 600);
             }
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-                setTimeout(hide, 400);
-            } else {
-                document.addEventListener('DOMContentLoaded', function () { setTimeout(hide, 400); });
-            }
-            // Trava de segurança: nunca deixa o loading passar de 2,8s
-            setTimeout(hide, 2800);
+            // Tempo fixo de pre loading para a animação aparecer por completo
+            setTimeout(hide, 1500);
         })();
     </script>
 
