@@ -1,15 +1,5 @@
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-55M21EB716"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-55M21EB716');
-</script>
-
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -806,6 +796,20 @@
                     gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
                     gsap.ticker.lagSmoothing(0, 0);
                 }
+
+                // Faz os links internos (ex: #planos) usarem o Lenis em vez do
+                // scroll nativo do navegador — sem isso os dois "brigam" e a
+                // rolagem trava/pula ao clicar em âncoras.
+                document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+                    link.addEventListener('click', function (e) {
+                        var id = link.getAttribute('href');
+                        if (!id || id === '#') return;
+                        var target = document.querySelector(id);
+                        if (!target) return;
+                        e.preventDefault();
+                        lenis.scrollTo(target, { offset: 0 });
+                    });
+                });
             }
 
             // 3. GSAP Scroll Animations
